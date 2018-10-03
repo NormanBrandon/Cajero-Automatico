@@ -14,8 +14,8 @@ namespace CajeroAutomatico
         private short NIP_Actual;
         private short NIP_Nuevo;
         private int cantidad;
-        private short estado_datos;
-        private short estado_confirmacion;
+        private string estado_datos;
+        private string estado_confirmacion;
         private Menu menu;
         private Principal principal;
         private LectorTarjetas lector = new LectorTarjetas();
@@ -35,12 +35,14 @@ namespace CajeroAutomatico
             {
                 if (lector.Password().Equals("qbWL1009!$pn"))
                 {
-                    menu = new Menu(this);
-                    menu.Show();
+                    cuentaTarjeta = lector.NumeroCuenta();
                     principal.Hide();
                     principal.timer1.Enabled = false;
-                    cuentaTarjeta = lector.NumeroCuenta();
-                    menu.lbTarjeta.Text = cuentaTarjeta;
+                    datos = new Ingreso_Datos(this);
+                    datos.Show();
+                    datos.lbMensaje1.Text = "Ingrese su NIP";
+                    estado_datos = "NIP De Inicio";
+                    
                 }
             }
             else {
@@ -64,7 +66,8 @@ namespace CajeroAutomatico
             menu.Close();
             datos = new Ingreso_Datos(this);
             datos.Show();
-            datos.lbMensaje1.Text = "Ingrese su NIP";
+            datos.lbMensaje1.Text = "Ingrese la cantidad que desea Retirar";
+            estado_datos = "Retiro";
 
         }
         public void Menu_Consultas()
@@ -77,6 +80,7 @@ namespace CajeroAutomatico
             datos = new Ingreso_Datos(this);
             datos.lbMensaje1.Text = "Ingrese la cuenta a la que desea Transferir";
             datos.Show();
+            estado_datos = "Transferencia";
         }
         public void Menu_Servicios()
         {
@@ -87,7 +91,8 @@ namespace CajeroAutomatico
             menu.Close();
             datos = new Ingreso_Datos(this);
             datos.Show();
-            datos.lbMensaje1.Text = "Ingrese su NIP Actual";
+            datos.lbMensaje1.Text = "Ingrese su nuevo NIP";
+            estado_datos = "Nuevo NIP";
         }
         #endregion
 
@@ -144,14 +149,16 @@ namespace CajeroAutomatico
         }
         public void Continuar()
         {
-            //Condicionales de Boton Retiro de Efectivo
-            if (datos.lbMensaje1.Text.Equals("Ingrese su NIP"))
+
+            if (estado_datos.Equals("NIP De Inicio"))
             {
                 //Aqui va codigo para validacion del NIP con base de datos
-                datos.txtMonto.Text = "";
-                datos.lbMensaje1.Text = "Ingrese la cantidad que desea retirar";
+                datos.Close();
+                menu = new Menu(this);
+                menu.Show();
+                menu.lbTarjeta.Text = cuentaTarjeta;
             }
-            else if (datos.lbMensaje1.Text.Equals("Ingrese la cantidad que desea retirar")) {
+            else if (estado_datos.Equals("Retiro")) {
                 //Valida si el saldo es suficiente, usando base de datos
                 datos.Close();
                 confirmacion = new Confirmacion(this);
@@ -161,42 +168,66 @@ namespace CajeroAutomatico
                 confirmacion.lbMensaje1.Text = "Cuenta de Retiro";
                 confirmacion.lbMensaje2.Text = "Cantidad a Retirar";
                 confirmacion.lbCuenta.Text = cuentaTarjeta;
-               
+                estado_confirmacion = "Retiro";
+
             }
             //Condicionales de Boton Cambiar Contraseña
 
-            else if (datos.lbMensaje1.Text.Equals("Ingrese su NIP Actual"))
-            {
-                datos.txtMonto.Text = "";
-                datos.lbMensaje1.Text = "Ingrese su nuevo NIP";
 
-            }
-            else if (datos.lbMensaje1.Text.Equals("Ingrese su nuevo NIP"))
+            else if (estado_datos.Equals("Nuevo NIP"))
             {
                 datos.txtMonto.Text = "";
                 datos.lbMensaje1.Text = "Confirme su nuevo NIP";
+                estado_datos = "NIP confirmacion";
 
             }
-            else if (datos.lbMensaje1.Text.Equals("Confirme su nuevo NIP"))
+            else if (estado_datos.Equals("NIP confirmacion"))
             {
-             //Validacion contraseñas coinciden
-
+                //Validacion contraseñas coinciden
+                datos.Close();
+                MessageBox.Show("Su NIP ha sido actualizado", "Cambio de contraseña correcto");
+                lector.CerrarLector();
+                principal = new Principal(this);
+                principal.Show();
             }
-            else if (datos.lbMensaje1.Text.Equals("Ingrese la cuenta a la que desea Transferir"))
+            else if (estado_datos.Equals("Transferencia"))
             {
                 datos.txtMonto.Text = "";
                 datos.lbMensaje1.Text = "Ingrese la Cantidad a Depositar";
-
+                estado_datos = "Deposito";
+            }
+            else if (estado_datos.Equals("Deposito")){
+                datos.Close();
+                confirmacion = new Confirmacion(this);
+                confirmacion.lbMensaje3.Visible = true;
+                confirmacion.lbDestino.Visible = true;
+                confirmacion.Show();
+                estado_confirmacion = "Transferencia";
             }
         }
 
 
         #endregion
+
         #region Eventos Vista Confirmacion
         public void Confirmar() {
-            //Modificar Base de datos en saldo y transaccion 
-            confirmacion.Close();
-
+            if (estado_confirmacion.Equals("Retiro"))
+            {
+                //Verifica que haya saldo suficiente en la base de datos, hace la transaccion
+                confirmacion.Close();
+                MessageBox.Show("Tome su dinero, por favor", "Retiro Correcto");
+                lector.CerrarLector();
+                principal = new Principal(this);
+                principal.Show();
+            }
+            else if (estado_confirmacion.Equals("Transferencia")) {
+                //Verifica que la cuenta exista y que haya saldo suficiente, HAce la transaccion
+                confirmacion.Close();
+                MessageBox.Show("Su transferencia ha sido exitosa", "Transferencia Correcta");
+                lector.CerrarLector();
+                principal = new Principal(this);
+                principal.Show();
+            }
         }
         public void Correguir()
         {
