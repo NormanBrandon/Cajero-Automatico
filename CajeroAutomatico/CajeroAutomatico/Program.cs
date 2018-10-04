@@ -16,7 +16,8 @@ namespace CajeroAutomatico
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Controlador controler = new Controlador();
+
         }
     }
 }
