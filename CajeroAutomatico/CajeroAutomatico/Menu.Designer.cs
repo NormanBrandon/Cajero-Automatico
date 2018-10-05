@@ -52,7 +52,7 @@
             // 
             this.label5.BackColor = System.Drawing.SystemColors.Window;
             this.label5.Font = new System.Drawing.Font("PMingLiU-ExtB", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(193, 84);
+            this.label5.Location = new System.Drawing.Point(193, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(287, 60);
             this.label5.TabIndex = 6;
@@ -63,7 +63,7 @@
             // 
             this.lbTarjeta.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lbTarjeta.Font = new System.Drawing.Font("PMingLiU-ExtB", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTarjeta.Location = new System.Drawing.Point(193, 144);
+            this.lbTarjeta.Location = new System.Drawing.Point(193, 119);
             this.lbTarjeta.Name = "lbTarjeta";
             this.lbTarjeta.Size = new System.Drawing.Size(287, 42);
             this.lbTarjeta.TabIndex = 7;
@@ -92,7 +92,7 @@
             // 
             this.label4.BackColor = System.Drawing.SystemColors.Window;
             this.label4.Font = new System.Drawing.Font("PMingLiU-ExtB", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(162, 176);
+            this.label4.Location = new System.Drawing.Point(162, 161);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(353, 60);
             this.label4.TabIndex = 10;

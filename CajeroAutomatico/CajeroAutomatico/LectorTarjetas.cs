@@ -5,7 +5,7 @@ namespace CajeroAutomatico
 {
     public class LectorTarjetas
     {
-        string puerto;
+        private string puerto;
         private SerialPort ArduinoPort = new SerialPort();
 
         public LectorTarjetas() {
