@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.IO.Ports;
-using System.Windows.Forms;
+
+
 namespace CajeroAutomatico
 {
     public class LectorTarjetas
@@ -10,10 +11,9 @@ namespace CajeroAutomatico
 
         public LectorTarjetas() {
             ArduinoPort.BaudRate = 9600;
-            
         }
         public bool Conectar() {
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 16; i++)
             {
                 puerto = "COM" + i;
                 try

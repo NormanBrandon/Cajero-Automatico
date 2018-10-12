@@ -1,9 +1,5 @@
-﻿using System.Collections;
+﻿
 using System.Windows.Forms;
-using System.IO.Ports;
-using System.IO;
-
-
 
 namespace CajeroAutomatico
 {

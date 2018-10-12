@@ -83,10 +83,12 @@
             // 
             // txtMonto
             // 
+            this.txtMonto.Font = new System.Drawing.Font("PMingLiU-ExtB", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMonto.Location = new System.Drawing.Point(75, 174);
             this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(250, 20);
+            this.txtMonto.Size = new System.Drawing.Size(250, 30);
             this.txtMonto.TabIndex = 11;
+            this.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pbNumero1
             // 
