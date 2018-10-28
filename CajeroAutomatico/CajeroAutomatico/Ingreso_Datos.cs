@@ -18,6 +18,9 @@ namespace CajeroAutomatico
         public delegate void Manejador2();
         public event Manejador2 Limpiar;
         public event Manejador2 Continuar;
+        public delegate void Manejador3(KeyPressEventArgs e);
+        public event Manejador3 Censurar;
+
 
         public Ingreso_Datos(Controlador controlador)
         {
@@ -25,6 +28,7 @@ namespace CajeroAutomatico
             this.controlador = controlador;
             Teclado += controlador.Teclado_Click;
             Limpiar += controlador.Limpiar;
+            Censurar += controlador.Censurar;
             Continuar += controlador.Continuar;
             
         }
@@ -104,6 +108,11 @@ namespace CajeroAutomatico
         private void pbContinuar_Click(object sender, EventArgs e)
         {
             Continuar();
+        }
+
+        private void txtMonto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Censurar(e);
         }
     }
 }

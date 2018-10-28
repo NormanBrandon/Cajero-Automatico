@@ -13,6 +13,7 @@ namespace CajeroAutomatico
         private int cantidad;
         private string estado_datos;
         private string estado_confirmacion;
+        private string dato;
                 
         private Menu menu;
         private Principal principal;
@@ -108,55 +109,86 @@ namespace CajeroAutomatico
             PictureBox pb = new PictureBox();
             pb = (PictureBox)sender;
             string nombre = pb.Name;
+            string tecla_numero="";
             switch (nombre)
             {
                 case "pbNumero1":
-                    datos.txtMonto.Text += 1;
-                    break;
+                    tecla_numero = "1";break;
                 case "pbNumero2":
-                    datos.txtMonto.Text += 2;
-                    break;
+                    tecla_numero = "2"; break;
                 case "pbNumero3":
-                    datos.txtMonto.Text += 3;
-                    break;
+                    tecla_numero = "3"; break;
                 case "pbNumero4":
-                    datos.txtMonto.Text += 4;
-                    break;
+                    tecla_numero = "4"; break;
                 case "pbNumero5":
-                    datos.txtMonto.Text += 5;
-                    break;
+                    tecla_numero = "5"; break;
                 case "pbNumero6":
-                    datos.txtMonto.Text += 6;
-                    break;
+                    tecla_numero = "6"; break;
                 case "pbNumero7":
-                    datos.txtMonto.Text += 7;
-                    break;
+                    tecla_numero = "7"; break;
                 case "pbNumero8":
-                    datos.txtMonto.Text += 8;
-                    break;
+                    tecla_numero = "8"; break;
                 case "pbNumero9":
-                    datos.txtMonto.Text += 9;
-                    break;
+                    tecla_numero = "9"; break;
                 case "pbNumero0":
-                    datos.txtMonto.Text += 0;
+                    tecla_numero = "0";
                     break;
                 case "pbBorrar":
+                    tecla_numero = "";
                     string original = datos.txtMonto.Text;
                     datos.txtMonto.Text = "";
+                    dato=dato.Remove(dato.Length -1);
                     for (int i = 0; i < original.Length - 1; i++)
                     {
                         datos.txtMonto.Text += original[i];
                     }
                     break;
             }
+            dato += tecla_numero;
+            if (estado_datos.Contains("NIP"))
+                datos.txtMonto.Text += "*";
+            else
+                datos.txtMonto.Text += tecla_numero;
         }
         public void Limpiar()
         {
             datos.txtMonto.Text = "";
+            dato = "";
+
+        }
+        public void Censurar(KeyPressEventArgs e) {
+            if (e.KeyChar >= (char)48 && e.KeyChar <= (char)57)//Sólo escribir numeros
+            {
+                dato = dato + e.KeyChar;
+                if (estado_datos.Contains("NIP"))
+                {
+                    string original = datos.txtMonto.Text;
+                    datos.txtMonto.Text = "";
+                    for (int i = 0; i < original.Length + 1; i++)
+                    {
+                        //Censura con asteriscos
+                        datos.txtMonto.Text += "*";
+                    }
+                }
+                else {
+                    datos.txtMonto.Text = datos.txtMonto.Text + e.KeyChar;
+                }
+            }
+            else if(e.KeyChar == (char)8){
+                dato =dato.Remove(dato.Length -1);
+                string original = datos.txtMonto.Text;
+                datos.txtMonto.Text = "";
+                for (int i = 0; i < original.Length - 1; i++)
+                {
+                    datos.txtMonto.Text += original[i];
+                }
+            }
+            e.Handled = true;
         }
         public void Continuar()
         {
-
+            MessageBox.Show(dato,"hola");
+            dato = "";
             if (estado_datos.Equals("NIP De Inicio"))
             {
                 //Aqui va codigo para validacion del NIP con base de datos

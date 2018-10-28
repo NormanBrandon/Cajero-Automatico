@@ -89,6 +89,7 @@
             this.txtMonto.Size = new System.Drawing.Size(250, 30);
             this.txtMonto.TabIndex = 11;
             this.txtMonto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtMonto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMonto_KeyPress);
             // 
             // pbNumero1
             // 
