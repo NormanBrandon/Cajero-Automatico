@@ -145,10 +145,11 @@ namespace CajeroAutomatico
                     break;
             }
             dato += tecla_numero;
-            if (estado_datos.Contains("NIP"))
+            if (estado_datos.Contains("NIP") && nombre !="pbBorrar")
                 datos.txtMonto.Text += "*";
             else
                 datos.txtMonto.Text += tecla_numero;
+            datos.txtMonto.Select(datos.txtMonto.Text.Length, 0);
         }
         public void Limpiar()
         {
@@ -184,11 +185,13 @@ namespace CajeroAutomatico
                 }
             }
             e.Handled = true;
+            datos.txtMonto.Select(datos.txtMonto.Text.Length, 0);
         }
+
         public void Continuar()
         {
             MessageBox.Show(dato,"hola");
-            dato = "";
+            
             if (estado_datos.Equals("NIP De Inicio"))
             {
                 //Aqui va codigo para validacion del NIP con base de datos
@@ -207,6 +210,7 @@ namespace CajeroAutomatico
                 confirmacion.Show();
                 confirmacion.lbMensaje1.Text = "Cuenta de Retiro";
                 confirmacion.lbMensaje2.Text = "Cantidad a Retirar";
+                confirmacion.lbCantidad.Text = dato;
                 confirmacion.lbCuenta.Text = cuentaTarjeta;
                 estado_confirmacion = "Retiro";
 
@@ -219,7 +223,6 @@ namespace CajeroAutomatico
                 datos.txtMonto.Text = "";
                 datos.lbMensaje1.Text = "Confirme su nuevo NIP";
                 estado_datos = "NIP confirmacion";
-
             }
             else if (estado_datos.Equals("NIP confirmacion"))
             {
@@ -245,6 +248,7 @@ namespace CajeroAutomatico
                 confirmacion.Show();
                 estado_confirmacion = "Transferencia";
             }
+            dato = "";
         }
 
 
@@ -320,7 +324,6 @@ namespace CajeroAutomatico
                 case "pbNetflix":
                     servicio = "Netflix";
                     break;
-
             }
 
         }
