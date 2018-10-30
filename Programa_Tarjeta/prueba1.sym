@@ -1,0 +1,38 @@
+005     OSC
+007     @SCRATCH
+008     @SCRATCH
+008     _RETURN_
+009     @TRIS_B
+
+ROM Allocation:
+0001  main
+0001  @cinit
+
+
+Project Directory:
+    C:\Users\NormanBrandon\Desktop\Cajero-Automatico\Programa_Tarjeta\
+
+Project Files:
+    prueba1.c
+    ..\..\..\..\..\Program Files (x86)\PICC\devices\12f508.h
+
+Units:
+    C:\Users\NormanBrandon\Desktop\Cajero-Automatico\Programa_Tarjeta\prueba1 (main)
+
+Compiler Settings:
+    Processor:      PIC12F508
+    Pointer Size:   5
+    Opt Level:      0
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      prueba1.err
+    Ext Symbols: prueba1.esym
+    INHX8:       prueba1.hex
+    Symbols:     prueba1.sym
+    List:        prueba1.lst
+    Debug/COFF:  prueba1.cof
+    Project:     prueba1.PJT
+    Call Tree:   prueba1.tre
+    Statistics:  prueba1.sta

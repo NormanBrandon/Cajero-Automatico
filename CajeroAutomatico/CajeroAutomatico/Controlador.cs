@@ -136,11 +136,15 @@ namespace CajeroAutomatico
                 case "pbBorrar":
                     tecla_numero = "";
                     string original = datos.txtMonto.Text;
-                    datos.txtMonto.Text = "";
-                    dato=dato.Remove(dato.Length -1);
-                    for (int i = 0; i < original.Length - 1; i++)
+                    
+                    if (original.Length > 0)
                     {
-                        datos.txtMonto.Text += original[i];
+                        datos.txtMonto.Text = "";
+                        dato = dato.Remove(dato.Length - 1);
+                        for (int i = 0; i < original.Length - 1; i++)
+                        {
+                            datos.txtMonto.Text += original[i];
+                        }
                     }
                     break;
             }
@@ -171,18 +175,23 @@ namespace CajeroAutomatico
                         datos.txtMonto.Text += "*";
                     }
                 }
-                else {
+                else
+                {
                     datos.txtMonto.Text = datos.txtMonto.Text + e.KeyChar;
                 }
             }
-            else if(e.KeyChar == (char)8){
-                dato =dato.Remove(dato.Length -1);
+            else if (e.KeyChar == (char)8)
+            {
+
                 string original = datos.txtMonto.Text;
+                if (original.Length > 0) { 
                 datos.txtMonto.Text = "";
+                dato = dato.Remove(dato.Length - 1);
                 for (int i = 0; i < original.Length - 1; i++)
                 {
                     datos.txtMonto.Text += original[i];
                 }
+                    }
             }
             e.Handled = true;
             datos.txtMonto.Select(datos.txtMonto.Text.Length, 0);
@@ -190,8 +199,7 @@ namespace CajeroAutomatico
 
         public void Continuar()
         {
-            MessageBox.Show(dato,"hola");
-            
+
             if (estado_datos.Equals("NIP De Inicio"))
             {
                 //Aqui va codigo para validacion del NIP con base de datos
@@ -210,13 +218,12 @@ namespace CajeroAutomatico
                 confirmacion.Show();
                 confirmacion.lbMensaje1.Text = "Cuenta de Retiro";
                 confirmacion.lbMensaje2.Text = "Cantidad a Retirar";
-                confirmacion.lbCantidad.Text = dato;
+                confirmacion.lbCantidad.Text = "$" + dato;
                 confirmacion.lbCuenta.Text = cuentaTarjeta;
                 estado_confirmacion = "Retiro";
 
             }
             //Condicionales de Boton Cambiar Contraseña
-
 
             else if (estado_datos.Equals("Nuevo NIP"))
             {
