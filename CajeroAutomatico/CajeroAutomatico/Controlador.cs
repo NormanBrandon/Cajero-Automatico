@@ -21,12 +21,15 @@ namespace CajeroAutomatico
         private Confirmacion confirmacion;
         private Ingreso_Datos datos;
         private Servicios servicios;
+        private Modelo modelo;
 
         public Controlador()
         {
             principal = new Principal(this);
             Application.Run(principal);
             principal.Controls.Add(principal.lbTarjeta);
+
+            modelo.iniciar();
 
         }
         #region Eventos Vista Principal
@@ -221,6 +224,7 @@ namespace CajeroAutomatico
                 confirmacion.lbCantidad.Text = "$" + dato;
                 confirmacion.lbCuenta.Text = cuentaTarjeta;
                 estado_confirmacion = "Retiro";
+                
 
             }
             //Condicionales de Boton Cambiar Contraseña
@@ -272,6 +276,7 @@ namespace CajeroAutomatico
                 lector.CerrarLector();
                 principal = new Principal(this);
                 principal.Show();
+                modelo.realizarRetiro();
             }
             else if (estado_confirmacion.Equals("Transferencia"))
             {

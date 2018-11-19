@@ -37,6 +37,10 @@ namespace CajeroAutomatico
 
             return true;//si el retiro es exitoso
         }
+        public void iniciar() {
+
+
+        }
 
     }
 }
