@@ -16,23 +16,23 @@ Saldo_td float,
 CONSTRAINT pk_ctd PRIMARY KEY(Numero_td)
 );
 
-CREATE TABLE Contraseña(
+CREATE TABLE ContraseÃ±a(
 Numero_ctsa int,
 CONSTRAINT pk_cctsa PRIMARY KEY(Numero_ctsa)
 );
 
-CREATE TABLE TarjetaCredito_Contraseña(
+CREATE TABLE TarjetaCredito_ContraseÃ±a(
 Numero_tc2 varchar(16),
 Numero_ctsa2 int,
 CONSTRAINT fk_ftc2 FOREIGN KEY(Numero_tc2) REFERENCES TarjetaCredito(Numero_tc),
-CONSTRAINT fk_fctsa2 FOREIGN KEY (Numero_ctsa2) REFERENCES Contraseña(Numero_ctsa)
+CONSTRAINT fk_fctsa2 FOREIGN KEY (Numero_ctsa2) REFERENCES ContraseÃ±a(Numero_ctsa)
 );
 
-CREATE TABLE TarjetaDebito_Contraseña(
+CREATE TABLE TarjetaDebito_ContraseÃ±a(
 Numero_td2 varchar(16),
 Numero_ctsa1 int,
 CONSTRAINT fk_ftd2 FOREIGN KEY(Numero_td2) REFERENCES TarjetaDebito(Numero_td),
-CONSTRAINT fk_fctsa1 FOREIGN KEY(Numero_ctsa1) REFERENCES Contraseña(Numero_ctsa)
+CONSTRAINT fk_fctsa1 FOREIGN KEY(Numero_ctsa1) REFERENCES ContraseÃ±a(Numero_ctsa)
 );
 
 CREATE TABLE Clientes_TarjetaCredito(
@@ -93,20 +93,29 @@ INSERT INTO empresas VALUES('SAT');
 
 
 INSERT INTO clientes VALUES(1,'Eduardo Marquez');
-INSERT INTO clientes VALUES(2,'Norman Saldaña');
+INSERT INTO clientes VALUES(2,'Norman SaldaÃ±a');
+INSERT INTO clientes VALUES(3,'Armando Rodriguez');
+INSERT INTO clientes VALUES(4,'Enrique Graue');
 
 INSERT INTO tarjetacredito VALUES('5632908851787856',10000);
 
 INSERT INTO tarjetadebito VALUES('1242754383559995',10000);
 
-INSERT INTO contraseña VALUES(4242);
-INSERT INTO contraseña VALUES(2424);
+INSERT INTO contraseÃ±a VALUES(4242);
+INSERT INTO contraseÃ±a VALUES(2424);
 
 INSERT INTO clientes_tarjetacredito VALUES(1,'5632908851787856');
-INSERT INTO clientes_tarjetadebito VALUES(2,'1242754383559995');
+INSERT INTO clientes_tarjetacredito VALUES(2,'8247592745762994');
+INSERT INTO clientes_tarjetacredito VALUES(3,'9847619375789138');
+INSERT INTO clientes_tarjetacredito VALUES(4,'1234085908236784');
 
-INSERT INTO tarjetadebito_contraseña VALUES('1242754383559995',2424);
-INSERT INTO tarjetacredito_contraseña VALUES('5632908851787856',4242);
+INSERT INTO clientes_tarjetadebito VALUES(2,'1242754383559995');
+INSERT INTO clientes_tarjetadebito VALUES(1,'1242754383559995');
+INSERT INTO clientes_tarjetadebito VALUES(3,'1242754383559995');
+INSERT INTO clientes_tarjetadebito VALUES(4,'1242754383559995');
+
+INSERT INTO tarjetadebito_contraseÃ±a VALUES('1242754383559995',2424);
+INSERT INTO tarjetacredito_contraseÃ±a VALUES('5632908851787856',4242);
 
 INSERT INTO empresas_clientes VALUES('Telmex',1);
 INSERT INTO empresas_clientes VALUES('Netflix',1);
