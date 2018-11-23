@@ -90,10 +90,10 @@ CONSTRAINT fk_fcliente10 FOREIGN KEY(Transferencia_cliente10) REFERENCES Transfe
 
 
 
-INSERT INTO empresas VALUES('Telmex');
-INSERT INTO empresas VALUES('Netflix');
-INSERT INTO empresas VALUES('CFE');
-INSERT INTO empresas VALUES('SAT');
+INSERT INTO empresas VALUES('Telmex',1);
+INSERT INTO empresas VALUES('Netflix',2);
+INSERT INTO empresas VALUES('CFE',3);
+INSERT INTO empresas VALUES('SAT',4);
 
 INSERT INTO clientes VALUES(1,'Eduardo Marquez');
 INSERT INTO clientes VALUES(2,'Norman SaldaÃ±a');
@@ -132,6 +132,7 @@ INSERT INTO tarjetacredito_contraseña VALUES('8247592745762994',5555);
 INSERT INTO tarjetacredito_contraseña VALUES('9847619375789138',6666);
 INSERT INTO tarjetacredito_contraseña VALUES('1234085908236784',7777);
 
+/*
 INSERT INTO empresas_clientes VALUES('Telmex',1);
 INSERT INTO empresas_clientes VALUES('Netflix',1);
 INSERT INTO empresas_clientes VALUES('CFE',1);
@@ -140,6 +141,7 @@ INSERT INTO empresas_clientes VALUES('Telmex',2);
 INSERT INTO empresas_clientes VALUES('Netflix',2);
 INSERT INTO empresas_clientes VALUES('CFE',2);
 INSERT INTO empresas_clientes VALUES('SAT',2);
+*/
 
 --Consultas de contraseÃ±as utilizando numero de tarjeta
 SELECT Numero_ctsa2 FROM TarjetaCredito_Contraseña WHERE Numero_tc2=5632908851787856;
@@ -163,3 +165,7 @@ UPDATE tarjetacredito SET credito_tc=(depende) WHERE Numero_tc=5632908851787856;
 
 UPDATE tarjetadebito SET debito_td=(depende) WHERE Numero_td=1242754383559995;
 
+--Insert en tabla cliente-empresa
+numeroDeCliente = SElECT Numero_cli1 FROM Clientes_TarjetaCredito WHERE Numero_tc1=5632908851787856;
+numeroDeEmpresa = SELECT Numero_emp FROM Empresas WHERE Numero_emp=1;
+INSERT INTO empresas_clientes VALUES (numeroDeEmpresa,numeroDeCliente); 
