@@ -5,6 +5,7 @@ namespace CajeroAutomatico
 {
     public class Controlador
     {
+        private bool estado_conexion=false;
         private string cuentaTarjeta;
         private string servicio;
         private string cuentaTransferencia;
@@ -27,33 +28,40 @@ namespace CajeroAutomatico
         {
             principal = new Principal(this);
             Application.Run(principal);
+            
             principal.Controls.Add(principal.lbTarjeta);
-
-            modelo.iniciar();
 
         }
         #region Eventos Vista Principal
         public void Timer()
         {
-            lector = new LectorTarjetas();
-            if (lector.Conectar())
+            if (estado_conexion)//Si la base no esta conectada no lee tarjetas ni nada alv
             {
-                if (lector.Password().Equals("qbWL1009!$pn"))
+                lector = new LectorTarjetas();
+                if (lector.Conectar())
                 {
-                    cuentaTarjeta = lector.NumeroCuenta();
-                    principal.Hide();
-                    principal.timer1.Enabled = false;
-                    datos = new Ingreso_Datos(this);
-                    datos.Show();
-                    datos.lbMensaje1.Text = "Ingrese su NIP";
-                    estado_datos = "NIP De Inicio";
+                    if (lector.Password().Equals("qbWL1009!$pn"))
+                    {
+                        cuentaTarjeta = lector.NumeroCuenta();
+                        principal.Hide();
+                        principal.timer1.Enabled = false;
+                        datos = new Ingreso_Datos(this);
+                        datos.Show();
+                        datos.lbMensaje1.Text = "Ingrese su NIP";
+                        estado_datos = "NIP De Inicio";
+
+                    }
 
                 }
+                else
+                {
+                    ErrorProvider errorP = new ErrorProvider();
+                    errorP.SetError(principal.lbTarjeta, "No se ha conectado el lector o Ingresado Tarjeta");
+                }
             }
-            else
-            {
-                ErrorProvider errorP = new ErrorProvider();
-                errorP.SetError(principal.lbTarjeta, "No se ha conectado el lector o Ingresado Tarjeta");
+            else {
+                modelo = new Modelo();
+                estado_conexion = modelo.ConectarBase();
             }
         }
         #endregion
@@ -231,7 +239,7 @@ namespace CajeroAutomatico
 
             else if (estado_datos.Equals("Nuevo NIP"))
             {
-                datos.txtMonto.Text = "";
+                datos.txtMonto.Text = modelo.obtenerNombre();
                 datos.lbMensaje1.Text = "Confirme su nuevo NIP";
                 estado_datos = "NIP confirmacion";
             }

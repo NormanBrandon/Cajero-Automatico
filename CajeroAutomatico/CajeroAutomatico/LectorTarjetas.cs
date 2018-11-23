@@ -1,24 +1,26 @@
 ﻿using System.IO;
 using System.IO.Ports;
-
+using System.Windows.Forms;
 
 namespace CajeroAutomatico
 {
     public class LectorTarjetas
     {
-        private string puerto;
+   
+        private string[] puertos;
         private SerialPort ArduinoPort = new SerialPort();
 
         public LectorTarjetas() {
             ArduinoPort.BaudRate = 9600;
         }
         public bool Conectar() {
-            for (int i = 0; i < 16; i++)
+            puertos = SerialPort.GetPortNames();
+
+            for (int i = 0; i < puertos.Length; i++)
             {
-                puerto = "COM" + i;
                 try
                 {
-                    ArduinoPort.PortName = puerto;
+                    ArduinoPort.PortName = puertos[i];
                     ArduinoPort.Open();
                     if (ArduinoPort.IsOpen)
                     {
@@ -27,6 +29,8 @@ namespace CajeroAutomatico
                 }
                 catch (IOException errorC)
                 {
+                    MessageBox.Show(errorC.Message);
+                    
                 }
                     continue;
                 

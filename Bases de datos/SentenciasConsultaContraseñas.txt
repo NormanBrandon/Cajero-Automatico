@@ -1,3 +1,1 @@
-SELECT Numero_ctsa2 FROM TarjetaCredito_Contraseña WHERE 5632908851787856
-
-SELECT Numero_ctsa1 FROM TarjetaDebito_Contraseña WHERE 1242754383559995
+SELECT Numero_ctsa2 FROM TarjetaCredito_Contraseña WHERE Numero_tc2=5632908851787856;
