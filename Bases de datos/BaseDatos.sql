@@ -184,13 +184,17 @@ SELECT Numero_ctsa1 FROM TarjetaDebito_Contraseña WHERE Numero_td1=124275438355
 --Consultas de saldo utilizando numero de tarjeta
 SELECT credito_tc FROM tarjetacredito WHERE Numero_tc=5632908851787856;
 
-SELECT  FROM tarjetadebito WHERE Numero_td=1242754383559995;
+SELECT debito_td FROM tarjetadebito WHERE Numero_td=1242754383559995;
 
 --Actualizar contraseñas utilizando numero de trajeta
 
+UPDATE TarjetaCredito_Contraseña SET Numero_ctsa2=(textbox) WHERE Numero_tc2=5632908851787856;
 
+UPDATE TarjetaDebito_Contraseña SET Numero_ctsa1=(textbox) WHERE Numero_td1=1242754383559995;
 
---Actualizar saldo utilizando numero de contraseña
+--Actualizar saldo y credito utilizando numero de contraseña
 
+UPDATE tarjetacredito SET credito_tc=(depende) WHERE Numero_tc=5632908851787856;
 
+UPDATE tarjetadebito SET debito_td=(depende) WHERE Numero_td=1242754383559995;
 
