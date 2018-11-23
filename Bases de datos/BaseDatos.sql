@@ -56,16 +56,6 @@ Numero_emp int,
 CONSTRAINT pk_cempnum PRIMARY KEY(Numero_emp)
 );
 
---Tabla de transferencias
-CREATE TABLE Transferencia(
-Transferencia_cliente float,
-Numero_cli4 int,
-Nombre_emp2 varchar(16),
-CONSTRAINT pk_ccliente PRIMARY KEY(Transferencia_cliente),
-CONSTRAINT fk_fcli4 FOREIGN KEY(Numero_cli4) REFERENCES Clientes(Numero_cli),
-CONSTRAINT fk_femp2 FOREIGN KEY(Nombre_emp2) REFERENCES Empresas(Nombre_emp)
-);
-
 --Tabla para relacionar las empresas con sus respectivos clientes
 CREATE TABLE Empresas_clientes(
 Numero_emp1 int,
@@ -74,20 +64,6 @@ NumeroReferencia int,
 CantidadDeposito int,  
 CONSTRAINT fk_femp1 FOREIGN KEY(Numero_emp1) REFERENCES Empresas(Numero_emp),
 CONSTRAINT fk_fcli3 FOREIGN KEY(Numero_cli3) REFERENCES Clientes(Numero_cli)
-);
-
---Tabla de depositos
-CREATE TABLE Deposito(
-Cliente_dep float,
-CONSTRAINT pk_cdep PRIMARY KEY(Cliente_dep)
-);
-
---Tabla para relacionar los depositos y las transferencias
-CREATE TABLE Deposito_Transferencia(
-Cliente_dep1 float,
-Transferencia_cliente10 float,
-CONSTRAINT fk_fdep1 FOREIGN KEY(Cliente_dep1) REFERENCES Deposito(Cliente_dep),
-CONSTRAINT fk_fcliente10 FOREIGN KEY(Transferencia_cliente10) REFERENCES Transferencia(Transferencia_cliente)
 );
 
 
@@ -233,16 +209,6 @@ CONSTRAINT pk_cempnum PRIMARY KEY(Numero_emp)
 );
 
 
-CREATE TABLE Transferencia(
-Transferencia_cliente float,
-Numero_cli4 int,
-Nombre_emp2 varchar(16),
-CONSTRAINT pk_ccliente PRIMARY KEY(Transferencia_cliente),
-CONSTRAINT fk_fcli4 FOREIGN KEY(Numero_cli4) REFERENCES Clientes(Numero_cli),
-CONSTRAINT fk_femp2 FOREIGN KEY(Nombre_emp2) REFERENCES Empresas(Nombre_emp)
-);
-
-
 CREATE TABLE Empresas_clientes(
 Numero_emp1 int,
 Numero_cli3 int,
@@ -250,20 +216,6 @@ NumeroReferencia int,
 CantidadDeposito int,  
 CONSTRAINT fk_femp1 FOREIGN KEY(Numero_emp1) REFERENCES Empresas(Numero_emp),
 CONSTRAINT fk_fcli3 FOREIGN KEY(Numero_cli3) REFERENCES Clientes(Numero_cli)
-);
-
-
-CREATE TABLE Deposito(
-Cliente_dep float,
-CONSTRAINT pk_cdep PRIMARY KEY(Cliente_dep)
-);
-
-
-CREATE TABLE Deposito_Transferencia(
-Cliente_dep1 float,
-Transferencia_cliente10 float,
-CONSTRAINT fk_fdep1 FOREIGN KEY(Cliente_dep1) REFERENCES Deposito(Cliente_dep),
-CONSTRAINT fk_fcliente10 FOREIGN KEY(Transferencia_cliente10) REFERENCES Transferencia(Transferencia_cliente)
 );
 
 
