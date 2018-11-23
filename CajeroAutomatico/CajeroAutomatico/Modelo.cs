@@ -9,11 +9,9 @@ namespace CajeroAutomatico
 {
     class Modelo //Aun no implementada
     {
-        int NIP;
-        string nombreUsuario;
-        float saldo;
+
         string host="127.0.0.1";
-        string bd="baseprueba";
+        string bd="caja4";
         string user="root";
         string pass="";
         private MySqlConnection conexion = new MySqlConnection();
@@ -22,7 +20,6 @@ namespace CajeroAutomatico
         public bool ConectarBase()
         {
             conexion.ConnectionString ="server="+host+";database="+bd+";uid="+user+";pwd="+pass+";";
-           
             try
             {
                 conexion.Open();
@@ -42,37 +39,95 @@ namespace CajeroAutomatico
                 catch (Exception error)
                 {
                     MessageBox.Show(error.Message);
-
                 }
-                
             }
-
         }
-        public int obtenerNIP() {
-            comando = new MySqlCommand("SELECT Numero_ctsa2 FROM TarjetaCredito_Contraseña", conexion);
+        public int obtenerNIP(string tarjeta,bool tipo) {
+            if (tipo)
+            {
+                comando = new MySqlCommand("SELECT Numero_ctsa2 FROM TarjetaCredito_Contraseña"+"WHERE Numero_tc2="+tarjeta, conexion);
+            }
+            else {
+                comando = new MySqlCommand("SELECT Numero_ctsa1 FROM TarjetaDebito_Contraseña"+"WHERE  Numero_td1="+tarjeta, conexion);
+            }
             consultas = comando.ExecuteReader();
-            NIP =int.Parse(consultas.GetString(0));
-            return NIP;
+            int nip =consultas.GetInt32(0);
+            return nip;
         }
-        public string obtenerNombre() {
-            comando = new MySqlCommand("SELECT Numero_ctsa2 FROM TarjetaCredito_Contraseña", conexion);
-            consultas = comando.ExecuteReader();
-            consultas.Read();
-            nombreUsuario = consultas.GetInt32(0).ToString();
-            return nombreUsuario;
-        }
-        public float obtenerSaldo() {
-
+        public int obtenerSaldo(string tarjeta,bool tipo) {
+            int saldo;
+            if (tipo)
+            {
+                comando = new MySqlCommand("SELECT Credito_tc FROM TarjetaCredito_Contraseña" + "WHERE Numero_tc2=" + tarjeta, conexion);
+            }
+            else
+            {
+                comando = new MySqlCommand("SELECT Saldo_td FROM TarjetaDebito_Contraseña" + "WHERE  Numero_td1=" + tarjeta, conexion);
+            }
+            try
+            {
+                consultas = comando.ExecuteReader();
+                saldo = consultas.GetInt32(0);  
+            }
+            catch (MySqlException error) {
+                saldo = 0;
+            }
             return saldo;
+
         }
-        public bool realizarTransferencia() {
+
+        public bool actualizarSaldo(string tarjeta,int cantidad,bool tipo) {
+            int saldo = obtenerSaldo(tarjeta, tipo) - cantidad;
+            if (tipo)
+            {
+                comando = new MySqlCommand("UPDATE TarjetaCredito_Contraseña SET Credito_tc=" + saldo+"WHERE Numero_tc2=" +tarjeta, conexion);
+            }
+            else
+            {
+                comando = new MySqlCommand("UPDATE TarjetaDebito_Contraseña SET Saldo_td=" + saldo + "WHERE Numero_td1=" + tarjeta, conexion);
+            }
+            try
+            {
+                 comando.ExecuteNonQuery();
+                return true;
+            }
+            catch (MySqlException error)
+            {
+                return false;
+            }
+            
+        }
+        public bool actualizarNIP(string tarjeta, int nip, bool tipo)
+        {
+            if (tipo)
+            {
+                comando = new MySqlCommand("UPDATE TarjetaCredito_Contraseña SET Numero_ctsa2 =" + nip + "WHERE Numero_tc2=" + tarjeta, conexion);
+            }
+            else
+            {
+                comando = new MySqlCommand("UPDATE TarjetaDebito_Contraseña SET Numero_ctsa1 =" + nip + "WHERE Numero_td1=" + tarjeta, conexion);
+            }
+            try
+            {
+                comando.ExecuteNonQuery();
+                return true;
+            }
+            catch (MySqlException error)
+            {
+                return false;
+            }
+        }
+
+        public bool realizarTransferencia(string cuentaTarjeta,string cuentaTransferencia,int cantidad) {
 
             return true;//si la transferencia es exitosa
         }
-        public bool realizarRetiro() {
+        public bool realizarPago(string tarjeta, string referencia, int cantidad) {
 
-            return true;//si el retiro es exitoso
+
+            return true;
         }
+
 
 
     }

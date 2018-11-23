@@ -239,7 +239,7 @@ namespace CajeroAutomatico
 
             else if (estado_datos.Equals("Nuevo NIP"))
             {
-                datos.txtMonto.Text = modelo.obtenerNombre();
+                datos.txtMonto.Text = modelo.obtenerNombre("123");
                 datos.lbMensaje1.Text = "Confirme su nuevo NIP";
                 estado_datos = "NIP confirmacion";
             }
@@ -284,7 +284,7 @@ namespace CajeroAutomatico
                 lector.CerrarLector();
                 principal = new Principal(this);
                 principal.Show();
-                modelo.realizarRetiro();
+                modelo.realizarRetiro("456");
             }
             else if (estado_confirmacion.Equals("Transferencia"))
             {
