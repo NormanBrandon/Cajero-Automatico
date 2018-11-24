@@ -11,7 +11,7 @@ void loop() {
   orden = Serial.read();
 
     if(orden=='1'){
-      Serial.println("6789 1236 7856 0945");
+      Serial.println("1234085908236784");
     
       }
     else if(orden=='2'){
@@ -19,13 +19,8 @@ void loop() {
         digitalWrite(13,HIGH);
         delay(100);
       }
-    else if(orden=='3'){
-      Serial.println("3000");
-        digitalWrite(13,HIGH);
-        delay(100);
-      }
-          else if(orden=='2'){
-      Serial.println("debito");
+          else if(orden=='3'){
+      Serial.println("1");
         digitalWrite(13,HIGH);
         delay(100);
       }

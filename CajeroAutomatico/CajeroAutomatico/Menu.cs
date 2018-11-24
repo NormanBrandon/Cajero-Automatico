@@ -13,6 +13,8 @@ namespace CajeroAutomatico
         public event Manejador Menu_Transferencias;
         public event Manejador Menu_Servicios;
         public event Manejador Menu_Consultas;
+        public event Manejador Menu_Depositos;
+
 
 
         private Controlador controlador;
@@ -27,7 +29,7 @@ namespace CajeroAutomatico
             Menu_Transferencias += controlador.Menu_Transferencias;
             Menu_Servicios += controlador.Menu_Servicios;
             Menu_Consultas += controlador.Menu_Consultas;
-
+            Menu_Depositos += controlador.Menu_Depositos;
 
         }
         private void pbSalir_Click(object sender, EventArgs e)
@@ -57,6 +59,11 @@ namespace CajeroAutomatico
         private void pbServicios_Click(object sender, EventArgs e)
         {
             Menu_Servicios();
+        }
+
+        private void pbDepositos_Click(object sender, EventArgs e)
+        {
+            Menu_Depositos();
         }
     }
 }

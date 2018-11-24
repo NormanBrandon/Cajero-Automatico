@@ -40,12 +40,14 @@
             this.pbEfectivo = new System.Windows.Forms.PictureBox();
             this.pbConsultas = new System.Windows.Forms.PictureBox();
             this.pbServicios = new System.Windows.Forms.PictureBox();
+            this.pbDepositos = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTranferencias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEfectivo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbConsultas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbServicios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDepositos)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -165,6 +167,17 @@
             this.pbServicios.TabStop = false;
             this.pbServicios.Click += new System.EventHandler(this.pbServicios_Click);
             // 
+            // pbDepositos
+            // 
+            this.pbDepositos.BackColor = System.Drawing.Color.Transparent;
+            this.pbDepositos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDepositos.BackgroundImage")));
+            this.pbDepositos.Location = new System.Drawing.Point(254, 224);
+            this.pbDepositos.Name = "pbDepositos";
+            this.pbDepositos.Size = new System.Drawing.Size(145, 70);
+            this.pbDepositos.TabIndex = 30;
+            this.pbDepositos.TabStop = false;
+            this.pbDepositos.Click += new System.EventHandler(this.pbDepositos_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,6 +188,7 @@
             this.Controls.Add(this.pbTranferencias);
             this.Controls.Add(this.pbServicios);
             this.Controls.Add(this.pbConsultas);
+            this.Controls.Add(this.pbDepositos);
             this.Controls.Add(this.pbEfectivo);
             this.Controls.Add(this.pbPassword);
             this.Controls.Add(this.label4);
@@ -192,6 +206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEfectivo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbConsultas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbServicios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbDepositos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -209,5 +224,6 @@
         private System.Windows.Forms.PictureBox pbConsultas;
         private System.Windows.Forms.PictureBox pbServicios;
         public System.Windows.Forms.Label lbTarjeta;
+        private System.Windows.Forms.PictureBox pbDepositos;
     }
 }

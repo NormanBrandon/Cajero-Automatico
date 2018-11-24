@@ -104,13 +104,13 @@ INSERT INTO clientes_tarjetadebito VALUES(1,'7893462391734713');
 INSERT INTO clientes_tarjetadebito VALUES(3,'7761272473896356');
 INSERT INTO clientes_tarjetadebito VALUES(4,'1230974561236348');
 
---Inserciones de la relacion entre tarjetas de debito y contraseñas
+--Inserciones de la relacion entre tarjetas de debito y contraseÃ±as
 INSERT INTO tarjetadebito_contrasena VALUES('1242754383559995',2424);
 INSERT INTO tarjetadebito_contrasena VALUES('7893462391734713',1111);
 INSERT INTO tarjetadebito_contrasena VALUES('7761272473896356',2222);
 INSERT INTO tarjetadebito_contrasena VALUES('1230974561236348',3333);
 
---Inserciones de la relacion entre tarjetas de credito y contraseñas
+--Inserciones de la relacion entre tarjetas de credito y contraseÃ±as
 INSERT INTO tarjetacredito_contrasena VALUES('5632908851787856',4242);
 INSERT INTO tarjetacredito_contrasena VALUES('8247592745762994',5555);
 INSERT INTO tarjetacredito_contrasena VALUES('9847619375789138',6666);
@@ -266,12 +266,12 @@ INSERT INTO tarjetacredito_contrasena VALUES('1234085908236784',7777);
 
 SELECT Numero_ctsa2 FROM TarjetaCredito_Contrasena WHERE Numero_tc2=5632908851787856;
 
-SELECT Numero_ctsa1 FROM TarjetaDebito_Contrasena WHERE Numero_td1=1242754383559995;
+SELECT Numero_ctsa1 FROM TarjetaDebito_Contrasena WHERE Numero_td2=1242754383559995;
 
 
 SELECT credito_tc FROM tarjetacredito WHERE Numero_tc=5632908851787856;
 
-SELECT debito_td FROM tarjetadebito WHERE Numero_td=1242754383559995;
+SELECT saldo_td FROM tarjetadebito WHERE Numero_td=1242754383559995;
 
 
 
@@ -286,7 +286,7 @@ UPDATE tarjetacredito SET credito_tc=(depende) WHERE Numero_tc=5632908851787856;
 UPDATE tarjetadebito SET debito_td=(depende) WHERE Numero_td=1242754383559995;
 
 numeroDeCliente = SElECT Numero_cli1 FROM Clientes_TarjetaCredito WHERE Numero_tc1=5632908851787856;
-numeroDeEmpresa = SELECT Numero_emp FROM Empresas WHERE Numero_emp=1;
-INSERT INTO empresas_clientes VALUES (numeroDeEmpresa,numeroDeCliente); 
+numeroDeEmpresa = SELECT Numero_emp FROM Empresas WHERE Nombre_emp="Telmex";
+INSERT INTO empresas_clientes VALUES (1,1,32345654334,400); 
 
 
