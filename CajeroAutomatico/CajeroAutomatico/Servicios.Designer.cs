@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Servicios));
             this.pbNetflix = new System.Windows.Forms.PictureBox();
-            this.pSat = new System.Windows.Forms.PictureBox();
+            this.pbSat = new System.Windows.Forms.PictureBox();
             this.pbTelmex = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pbCFE = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbNetflix)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pSat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTelmex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCFE)).BeginInit();
             this.SuspendLayout();
@@ -53,16 +53,16 @@
             this.pbNetflix.TabStop = false;
             this.pbNetflix.Click += new System.EventHandler(this.pbNetflix_Click);
             // 
-            // pSat
+            // pbSat
             // 
-            this.pSat.BackColor = System.Drawing.Color.Transparent;
-            this.pSat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pSat.BackgroundImage")));
-            this.pSat.Location = new System.Drawing.Point(76, 309);
-            this.pSat.Name = "pSat";
-            this.pSat.Size = new System.Drawing.Size(178, 58);
-            this.pSat.TabIndex = 36;
-            this.pSat.TabStop = false;
-            this.pSat.Click += new System.EventHandler(this.pSat_Click);
+            this.pbSat.BackColor = System.Drawing.Color.Transparent;
+            this.pbSat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbSat.BackgroundImage")));
+            this.pbSat.Location = new System.Drawing.Point(76, 309);
+            this.pbSat.Name = "pbSat";
+            this.pbSat.Size = new System.Drawing.Size(178, 58);
+            this.pbSat.TabIndex = 36;
+            this.pbSat.TabStop = false;
+            this.pbSat.Click += new System.EventHandler(this.pSat_Click);
             // 
             // pbTelmex
             // 
@@ -124,14 +124,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pbNetflix);
             this.Controls.Add(this.pbCFE);
-            this.Controls.Add(this.pSat);
+            this.Controls.Add(this.pbSat);
             this.Controls.Add(this.pbTelmex);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Name = "Servicios";
             this.Text = "Servicios";
             ((System.ComponentModel.ISupportInitialize)(this.pbNetflix)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pSat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTelmex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCFE)).EndInit();
             this.ResumeLayout(false);
@@ -141,7 +141,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pbNetflix;
-        private System.Windows.Forms.PictureBox pSat;
+        private System.Windows.Forms.PictureBox pbSat;
         private System.Windows.Forms.PictureBox pbTelmex;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;

@@ -329,6 +329,13 @@ namespace CajeroAutomatico
                         Limpiar();
                         ErrorProvider errorP = new ErrorProvider();
                         errorP.SetError(datos.txtMonto, "Los NIP no coinciden");
+                        MessageBox.Show("Los NIP no coiniden intentelo de nuevo", "Error");
+                        datos.Close();
+                        datos = new Ingreso_Datos(this);
+                        datos.Show();
+                        datos.lbMensaje1.Text = "Ingrese su nuevo NIP";
+                        estado_datos = "Nuevo NIP";
+
                     }
                 }
                 else
@@ -336,6 +343,12 @@ namespace CajeroAutomatico
                     Limpiar();
                     ErrorProvider errorP = new ErrorProvider();
                     errorP.SetError(datos.txtMonto, "Debe ser de 4 digitos");
+                    MessageBox.Show("Los NIP no coiniden intentelo de nuevo", "Error");
+                    datos.Close();
+                    datos = new Ingreso_Datos(this);
+                    datos.Show();
+                    datos.lbMensaje1.Text = "Ingrese su nuevo NIP";
+                    estado_datos = "Nuevo NIP";
                 }
                 
             }
@@ -441,9 +454,10 @@ namespace CajeroAutomatico
                     confirmacion.lbMensaje3.Visible = true;
                     confirmacion.lbDestino.Visible = true;
                     confirmacion.lbCantidad.Text = cantidad.ToString();
-                    confirmacion.lbCuenta.Text = cuentaTarjeta;
+                    confirmacion.lbCuenta.Text = servicio;
                     confirmacion.lbDestino.Text = referencia;
                     confirmacion.lbMensaje3.Text = "Numero de referencia";
+                    confirmacion.lbMensaje1.Text = "Servicio a Pagar";
                     estado_confirmacion = "Servicio_Confirmacion";
                 }
                 else
@@ -530,7 +544,7 @@ namespace CajeroAutomatico
             {
 
 
-                if (modelo.actualizarSaldo(cuentaTarjeta, cantidad * -1, tipo))
+                if (modelo.actualizarSaldo(cuentaTarjeta, cantidad , tipo))
                 {
                     MessageBox.Show("Deposito exitoso, saldo actualizado", "Deposito Correcto");
                 }
@@ -587,6 +601,13 @@ namespace CajeroAutomatico
                 datos.lbMensaje1.Text = "Ingrese la cantidad que desea Depositar";
                 estado_datos = "Deposito";
             }
+            else if (estado_confirmacion.Equals("Servicio_Confirmacion"))
+            {
+                confirmacion.Close();
+                servicios = new Servicios(this);
+                servicios.Show();
+
+            }
 
 
         }
@@ -601,18 +622,19 @@ namespace CajeroAutomatico
             estado_datos = "Referencia";
             PictureBox pb = new PictureBox();
             pb = (PictureBox)sender;
+            
             switch (pb.Name)
             {
-                case "pCFE":
+                case "pbCFE":
                     this.servicio = "CFE";
                 break;
-                case "pSat":
+                case "pbSat":
                     this.servicio = "SAT";
                     break;
-                case "pTelmex":
+                case "pbTelmex":
                     this.servicio = "Telmex";
                     break;
-                case "pNetflix":
+                case "pbNetflix":
                     this.servicio = "Netflix";
                     break;
             }

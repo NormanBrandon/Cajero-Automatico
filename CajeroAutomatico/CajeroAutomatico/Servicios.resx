@@ -149,7 +149,7 @@
         QmCC
 </value>
   </data>
-  <data name="pSat.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pbSat.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAKsAAAA9CAMAAADlCWl1AAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1
         MAAA6mAAADqYAAAXb5JfxUYAAAMAUExURQB1vu/2+w99wn+63sjHx5GPjz+XziMfIP///1lWV7/c71+o
