@@ -171,6 +171,7 @@
             // 
             this.pbDepositos.BackColor = System.Drawing.Color.Transparent;
             this.pbDepositos.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbDepositos.BackgroundImage")));
+            this.pbDepositos.Image = ((System.Drawing.Image)(resources.GetObject("pbDepositos.Image")));
             this.pbDepositos.Location = new System.Drawing.Point(254, 224);
             this.pbDepositos.Name = "pbDepositos";
             this.pbDepositos.Size = new System.Drawing.Size(145, 70);

@@ -33,12 +33,13 @@
             this.lbMensaje1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvConsultas = new System.Windows.Forms.DataGridView();
-            this.dTransaccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dDeposito = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbMensaje = new System.Windows.Forms.Label();
             this.lbTarjeta = new System.Windows.Forms.Label();
             this.lbSaldo = new System.Windows.Forms.Label();
+            this.dTransaccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dCuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NoReferencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dDeposito = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pbContinuar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConsultas)).BeginInit();
             this.SuspendLayout();
@@ -89,26 +90,12 @@
             this.dgvConsultas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dTransaccion,
             this.dCuenta,
+            this.NoReferencia,
             this.dDeposito});
             this.dgvConsultas.Location = new System.Drawing.Point(58, 256);
             this.dgvConsultas.Name = "dgvConsultas";
             this.dgvConsultas.Size = new System.Drawing.Size(449, 211);
             this.dgvConsultas.TabIndex = 18;
-            // 
-            // dTransaccion
-            // 
-            this.dTransaccion.HeaderText = "Transaccion";
-            this.dTransaccion.Name = "dTransaccion";
-            // 
-            // dCuenta
-            // 
-            this.dCuenta.HeaderText = "Cuenta";
-            this.dCuenta.Name = "dCuenta";
-            // 
-            // dDeposito
-            // 
-            this.dDeposito.HeaderText = "Deposito";
-            this.dDeposito.Name = "dDeposito";
             // 
             // lbMensaje
             // 
@@ -143,6 +130,26 @@
             this.lbSaldo.Text = "$1000";
             this.lbSaldo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // dTransaccion
+            // 
+            this.dTransaccion.HeaderText = "Transaccion";
+            this.dTransaccion.Name = "dTransaccion";
+            // 
+            // dCuenta
+            // 
+            this.dCuenta.HeaderText = "Cuenta";
+            this.dCuenta.Name = "dCuenta";
+            // 
+            // NoReferencia
+            // 
+            this.NoReferencia.HeaderText = "No.Referencia";
+            this.NoReferencia.Name = "NoReferencia";
+            // 
+            // dDeposito
+            // 
+            this.dDeposito.HeaderText = "Deposito";
+            this.dDeposito.Name = "dDeposito";
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,12 +179,13 @@
         public System.Windows.Forms.PictureBox pbContinuar;
         public System.Windows.Forms.Label lbMensaje1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dgvConsultas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dTransaccion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dCuenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dDeposito;
         public System.Windows.Forms.Label lbMensaje;
         public System.Windows.Forms.Label lbTarjeta;
         public System.Windows.Forms.Label lbSaldo;
+        public System.Windows.Forms.DataGridView dgvConsultas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dTransaccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dCuenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NoReferencia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dDeposito;
     }
 }

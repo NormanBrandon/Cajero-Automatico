@@ -1,6 +1,8 @@
 ﻿
 using System.Windows.Forms;
 using System.Threading;
+using System.Collections.Generic;
+
 namespace CajeroAutomatico
 {
     public class Controlador
@@ -111,6 +113,13 @@ namespace CajeroAutomatico
             else {
                 consultas.lbMensaje.Text = "Su saldo Disponible es :";
             }
+            List<string[]> tabla = new List<string[]>();
+            tabla = modelo.realizarConsulta(cuentaTarjeta, tipo);
+  
+            
+            for (int i = 0; i < tabla.Count; i++) {
+                consultas.dgvConsultas.Rows.Add(tabla[i]);
+            } 
         }
         public void Menu_Transferencias()
         {

@@ -219,7 +219,6 @@ CONSTRAINT fk_fcli3 FOREIGN KEY(Numero_cli3) REFERENCES Clientes(Numero_cli)
 );
 
 
-
 INSERT INTO empresas VALUES('Telmex',1);
 INSERT INTO empresas VALUES('Netflix',2);
 INSERT INTO empresas VALUES('CFE',3);
@@ -288,5 +287,5 @@ UPDATE tarjetadebito SET debito_td=(depende) WHERE Numero_td=1242754383559995;
 numeroDeCliente = SElECT Numero_cli1 FROM Clientes_TarjetaCredito WHERE Numero_tc1=5632908851787856;
 numeroDeEmpresa = SELECT Numero_emp FROM Empresas WHERE Nombre_emp="Telmex";
 INSERT INTO empresas_clientes VALUES (1,1,32345654334,400); 
-
+SELECT Numero_emp1,NumeroReferencia,CantidadDeposito FROM empresas_clientes WHERE Numero_cli3=3
 
