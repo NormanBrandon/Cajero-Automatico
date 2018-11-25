@@ -9,13 +9,10 @@ namespace CajeroAutomatico
    
         private string[] puertos;
         private SerialPort ArduinoPort = new SerialPort();
-        private bool estado=false;
-
-        public bool Estado { get => estado; set => estado = value; }
 
         public LectorTarjetas() {
             ArduinoPort.BaudRate = 9600;
-            Estado = false;
+            
         }
         public bool Conectar() {
 
@@ -31,7 +28,7 @@ namespace CajeroAutomatico
                     if (ArduinoPort.IsOpen)
                     {
                         retorno = true;
-                        Estado = true;
+                
                         break;
                     }
                 }

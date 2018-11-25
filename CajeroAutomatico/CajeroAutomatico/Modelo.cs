@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 namespace CajeroAutomatico
 {
-    class Modelo //Aun no implementada
+    class Modelo 
     {
         string host = "127.0.0.1";
         string bd = "cajero-automatico";
@@ -27,13 +27,15 @@ namespace CajeroAutomatico
             try
             {
                 conexion.Open();
+                return true;
+
             }
             catch (Exception error)
             {
                 MessageBox.Show(error.Message);
-
+                return false;
             }
-            return true;
+            
         }
         public void DesconectarBase()
         {
@@ -59,7 +61,7 @@ namespace CajeroAutomatico
             }
             else
             {
-                comando = new MySqlCommand("SELECT Numero_ctsa1 FROM TarjetaDebito_Contrasena " + "WHERE  Numero_td1=" + tarjeta + ";", conexion);
+                comando = new MySqlCommand("SELECT Numero_ctsa1 FROM TarjetaDebito_Contrasena " + "WHERE  Numero_td2=" + tarjeta + ";", conexion);
             }
             try
             {
@@ -158,7 +160,7 @@ namespace CajeroAutomatico
             }
             else
             {
-                comando = new MySqlCommand("UPDATE TarjetaDebito_Contrasena SET Numero_ctsa1 =" + nip + " WHERE Numero_td1=" + tarjeta, conexion);
+                comando = new MySqlCommand("UPDATE TarjetaDebito_Contrasena SET Numero_ctsa1 =" + nip + " WHERE Numero_td2=" + tarjeta, conexion);
             }
             try
             {
@@ -303,7 +305,7 @@ namespace CajeroAutomatico
             {
                 comando = new MySqlCommand("SELECT Numero_emp1,NumeroReferencia,CantidadDeposito FROM empresas_clientes WHERE Numero_cli3=" + cliente + ";", conexion);
                 int i = 0;
-                
+
                 consultas = comando.ExecuteReader();
                 while (consultas.Read())
                 {
@@ -320,6 +322,11 @@ namespace CajeroAutomatico
             catch (MySqlException error)
             {
                 return null;
+            }
+            finally {
+
+                comando.Dispose();
+                consultas.Dispose();
             }
         }
         public List<string> obtenerEmpresaNombre(int cliente)

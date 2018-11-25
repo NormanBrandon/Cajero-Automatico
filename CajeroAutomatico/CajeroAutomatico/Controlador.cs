@@ -7,7 +7,8 @@ namespace CajeroAutomatico
 {
     public class Controlador
     {
-        private bool estado_base=false;
+        #region Atributos y Objetos
+        private bool estado_base = false;
         private bool estado_lector = false;
         private string cuentaTarjeta;
         private string servicio;
@@ -19,7 +20,7 @@ namespace CajeroAutomatico
         private string estado_datos;
         private string estado_confirmacion;
         private string dato ="";
-        private bool tipo = true;
+        private bool tipo;
                 
         private Menu menu;
         private Principal principal;
@@ -29,61 +30,60 @@ namespace CajeroAutomatico
         private Servicios servicios;
         private Modelo modelo;
         private Consultas consultas;
+        #endregion
+
+        #region Constructor, inicio de conexiones
         public Controlador()
         {
-            principal = new Principal(this);
-            Application.Run(principal);
-            principal.Controls.Add(principal.lbTarjeta);
-        
 
-        }
-        #region Eventos Vista Principal
-  
-        public void Timer()
-        {
-            if (estado_base)//Si la base no esta conectada no lee tarjetas ni nada 
-            {
-                lector = new LectorTarjetas();
-                lector.Conectar();
-                if (lector.Estado)
-                {
-                    principal.timer1.Enabled = false;
-                    if (lector.Password().Equals("qbWL1009!$pn"))
-                    {
-                        estado_lector = true;
-                        cuentaTarjeta = lector.NumeroCuenta();
-                        
-                        principal.Hide();
-
-                        datos = new Ingreso_Datos(this);
-                        datos.Show();
-                        datos.lbMensaje1.Text = "Ingrese su NIP";
-                        estado_datos = "NIP De Inicio";
-
-                    }
-
-                }
-                else
-                {
-                   
-                    ErrorProvider errorP = new ErrorProvider();
-                    errorP.SetError(principal.lbTarjeta, "No se ha conectado el lector");
-
-                }
-            }
-            else
+            while (!estado_base)
             {
                 modelo = new Modelo();
                 estado_base = modelo.ConectarBase();
+                if(!estado_base)
+                MessageBox.Show("Base de datos \"cajero-automatico\" no Conectada, Inicie el servicio por favor", "Error de conexion");      
             }
+            while (!estado_lector)
+            {
+                lector = new LectorTarjetas();
+                estado_lector =lector.Conectar();
+                if(!estado_lector)
+                MessageBox.Show("Lector de Tarjetas BanFi no conectado", "Error de conexion");
+
+            }
+            principal = new Principal(this);
+            Application.Run(principal);
+            principal.Controls.Add(principal.lbTarjeta);
+  
         }
         #endregion
+
+
+        #region Eventos Vista Principal
+
+        public void Timer()
+        {
+            if (lector.Password().Equals("qbWL1009!$pn"))
+            {
+                cuentaTarjeta = lector.NumeroCuenta();
+                tipo = lector.Tipo();
+                principal.Hide();
+                datos = new Ingreso_Datos(this);
+                datos.Show();
+                datos.lbMensaje1.Text = "Ingrese su NIP";
+                estado_datos = "NIP De Inicio";
+                principal.timer1.Enabled = false;
+            }
+
+        }
+        #endregion
+
+
 
         #region Eventos Menu
 
         public void Menu_Salir()
         {
-            lector.CerrarLector();
             menu.Close();
             principal = new Principal(this);
             principal.Show();
@@ -322,7 +322,6 @@ namespace CajeroAutomatico
                     {
                         NIP_Nuevo = short.Parse(dato);
                         datos.Close();
-                        lector.CerrarLector();
                         principal = new Principal(this);
                         principal.Show();
                         if (modelo.actualizarNIP(cuentaTarjeta, NIP_Nuevo, tipo))
@@ -330,9 +329,7 @@ namespace CajeroAutomatico
                             MessageBox.Show("Su NIP ha sido actualizado", "Cambio de contraseña correcto");
                         }
                         else {
-                            MessageBox.Show("Error al actualizar, Intente más tarde", "Cambio de contraseña incorrecto");
-
-                        }
+                            MessageBox.Show("Error al actualizar, Intente más tarde", "Cambio de contraseña incorrecto");                        }
                     }
                     else {
                         Limpiar();
@@ -476,12 +473,8 @@ namespace CajeroAutomatico
                     errorP.SetError(datos.txtMonto, "Debe llenar este campo");
                 }
             }
-
-
             dato = "";
         }
-
-
         #endregion
 
         #region Eventos Vista Confirmacion
@@ -501,7 +494,6 @@ namespace CajeroAutomatico
                     }
 
                     confirmacion.Close();
-                    lector.CerrarLector();
                     principal = new Principal(this);
                     principal.Show();
 
@@ -521,8 +513,6 @@ namespace CajeroAutomatico
             else if (estado_confirmacion.Equals("Transferencia_Cantidad"))
 
             {
-
-               
                     if (modelo.actualizarSaldo(cuentaTarjeta, cantidad * -1, tipo))
                     {
                         if (modelo.actualizarSaldo(cuentaTransferencia, cantidad, false))
@@ -544,7 +534,6 @@ namespace CajeroAutomatico
                 
               
                 confirmacion.Close();
-                lector.CerrarLector();
                 principal = new Principal(this);
                 principal.Show();
 
@@ -562,7 +551,6 @@ namespace CajeroAutomatico
                     MessageBox.Show("Ocurrio un error, intente mas tarde", "Deposito Incorrecto");
                 }
                     confirmacion.Close();
-                    lector.CerrarLector();
                     principal = new Principal(this);
                     principal.Show();
                 
@@ -571,6 +559,7 @@ namespace CajeroAutomatico
             {
                 if (modelo.realizarPago(cuentaTarjeta,referencia,cantidad,servicio,tipo))
                 {
+                    modelo.actualizarSaldo(cuentaTarjeta, cantidad * -1, tipo);
                     MessageBox.Show("Pago exitoso " +servicio, "Transferencia Correcta");
                 }
                 else
@@ -578,7 +567,6 @@ namespace CajeroAutomatico
                     MessageBox.Show(servicio +"Ocurrio un error, intente mas tarde", "Transferencia Incorrecta");
                 }
                 confirmacion.Close();
-                lector.CerrarLector();
                 principal = new Principal(this);
                 principal.Show();
             }
@@ -653,7 +641,6 @@ namespace CajeroAutomatico
         public void Imprimir() {
             consultas.Close();
             MessageBox.Show("Imprimiendo Comprobante...");
-            lector.CerrarLector();
             principal = new Principal(this);
             principal.Show();
         }
