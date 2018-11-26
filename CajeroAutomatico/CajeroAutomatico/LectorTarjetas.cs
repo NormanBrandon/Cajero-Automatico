@@ -45,10 +45,10 @@ namespace CajeroAutomatico
             ArduinoPort.Close();
         }
         public string NumeroCuenta() {
-            ArduinoPort.WriteLine("1");
+            ArduinoPort.Write("2");
             string cuenta = ArduinoPort.ReadLine();
             string numcuenta = "";
-            for (int i = 0; i < cuenta.Length - 1; i++)
+            for (int i = 0; i < cuenta.Length -1; i++)
             {
                 numcuenta += cuenta[i];
             }
@@ -56,10 +56,10 @@ namespace CajeroAutomatico
             return numcuenta;
         }
         public string Password() {
-            ArduinoPort.WriteLine("2");
+            ArduinoPort.Write("1");
             string password = ArduinoPort.ReadLine();
             string passwd = "";
-            for (int i = 0; i < password.Length - 1; i++)
+            for (int i = 0; i < password.Length -1; i++)
             {
                 passwd += password[i];
             }
@@ -67,14 +67,15 @@ namespace CajeroAutomatico
             return passwd;
         }
         public bool Tipo() {
-            ArduinoPort.WriteLine("3");
+            ArduinoPort.Write("3");
             string type = ArduinoPort.ReadLine();
             string tipo = "";
-            for (int i = 0; i < type.Length - 1; i++)
+            for (int i = 0; i < type.Length -1; i++)
             {
                 tipo += type[i];
             }
             ArduinoPort.DiscardInBuffer();
+  
             if (tipo.Equals("1")) {
                 return true;
             }

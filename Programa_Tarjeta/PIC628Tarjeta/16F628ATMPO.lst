@@ -1,4 +1,4 @@
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  1
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00041 ; See data sheet for additional information on configuration word settings.
                       00042 
                       00043 ;***** VARIABLE DEFINITIONS (examples)
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  2
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -95,7 +95,7 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00073 MAIN_PROG     CODE
 Warning[205]: Found directive in column 1. (CBLOCK)
                       00074 CBLOCK 0X30
-  00000030            00075 RETARDO1,RETARDO2,RETARDO3,CONT,DATO,RESUL,SEND_DATA
+  00000030            00075 RETARDO1,RETARDO2,RETARDO3,CONT,DATO,RESUL,SEND_DATA,SALTO
 Warning[205]: Found directive in column 1. (ENDC)
                       00076 ENDC
 0000                  00077 START
@@ -116,7 +116,7 @@ Warning[203]: Found opcode in column 1. (MOVWF)
 0008   009F           00085 MOVWF CMCON
 Warning[205]: Found directive in column 1. (BANKSEL)
 0009   1283 1303      00086 BANKSEL STATUS
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  3
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -133,160 +133,367 @@ Warning[203]: Found opcode in column 1. (CALL)
 000D   2???           00092 CALL RETARDO
 Warning[203]: Found opcode in column 1. (CALL)
 000E   2???           00093 CALL RX
-Warning[204]: Found pseudo-op in column 1. (MOVFW)
-000F   0835           00094 MOVFW RESUL
-Warning[203]: Found opcode in column 1. (MOVWF)
-0010   00B6           00095 MOVWF SEND_DATA
-Warning[203]: Found opcode in column 1. (CALL)
-0011   2???           00096 CALL TX
+                      00094 ;CALL CONTRASEÑA_SI
+                      00095 ;CALL TARJETA_SI
+                      00096 ;CALL TIPO_SI
+                      00097 
+                      00098 ;MOVFW RESUL
+                      00099 ;MOVWF SEND_DATA
+                      00100 ;CALL TX
 Warning[203]: Found opcode in column 1. (MOVLW)
-0012   3030           00097 MOVLW .48
-Warning[203]: Found opcode in column 1. (MOVWF)
-0013   00B6           00098 MOVWF SEND_DATA
+000F   3001           00101 MOVLW .1
 Warning[203]: Found opcode in column 1. (CALL)
-0014   2???           00099 CALL TX
-                      00100 
-Warning[203]: Found opcode in column 1. (GOTO)
-0015   2???           00101 GOTO INF
-                      00102 
+0010   2???           00102 CALL RETARDO
                       00103 
-                      00104 
-                      00105 
-0016                  00106 TX
-Warning[203]: Found opcode in column 1. (BSF)
-0016   1706           00107 BSF PORTB,6
-Warning[203]: Found opcode in column 1. (BSF)
-0017   1405           00108 BSF PORTA,0
-Warning[204]: Found pseudo-op in column 1. (MOVFW)
-0018   0836           00109 MOVFW SEND_DATA
-Warning[203]: Found opcode in column 1. (MOVWF)
-0019   00B4           00110 MOVWF DATO
-Warning[203]: Found opcode in column 1. (BCF)
-001A   1005           00111 BCF PORTA,0
-Warning[203]: Found opcode in column 1. (BCF)
-001B   1306           00112 BCF PORTB,6
-Warning[203]: Found opcode in column 1. (CALL)
-001C   2???           00113 CALL RETARDO_SERIAL
 Warning[203]: Found opcode in column 1. (MOVLW)
-001D   3008           00114 MOVLW .8
-Warning[203]: Found opcode in column 1. (MOVWF)
-001E   00B3           00115 MOVWF CONT
-001F                  00116 OTRA
-Warning[203]: Found opcode in column 1. (RRF)
-001F   0CB4           00117 RRF DATO,1
-Warning[203]: Found opcode in column 1. (BTFSS)
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  4
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-0020   1C03           00118 BTFSS STATUS,C
-Warning[203]: Found opcode in column 1. (GOTO)
-0021   2???           00119 GOTO NO
-Warning[203]: Found opcode in column 1. (BSF)
-0022   1706           00120 BSF PORTB,6
-Warning[203]: Found opcode in column 1. (BSF)
-0023   1405           00121 BSF PORTA,0
-Warning[203]: Found opcode in column 1. (GOTO)
-0024   2???           00122 GOTO SI
-0025                  00123 NO
-Warning[203]: Found opcode in column 1. (BCF)
-0025   1306           00124 BCF PORTB,6
-Warning[203]: Found opcode in column 1. (BCF)
-0026   1005           00125 BCF PORTA,0
-0027                  00126 SI
-                      00127 
-Warning[203]: Found opcode in column 1. (CALL)
-0027   2???           00128 CALL RETARDO_SERIAL
-Warning[203]: Found opcode in column 1. (DECFSZ)
-Message[305]: Using default destination of 1 (file).
-0028   0BB3           00129 DECFSZ CONT
-Warning[203]: Found opcode in column 1. (GOTO)
-0029   2???           00130 GOTO OTRA 
-Warning[203]: Found opcode in column 1. (BSF)
-002A   1706           00131 BSF PORTB,6
-Warning[203]: Found opcode in column 1. (RETURN)
-002B   0008           00132 RETURN
-                      00133 
-002C                  00134 RX
-002C                  00135 WAIT
+0011   3032           00104 MOVLW '2'
+Warning[203]: Found opcode in column 1. (SUBWF)
+0012   0235           00105 SUBWF RESUL,0
 Warning[203]: Found opcode in column 1. (BTFSC)
-002C   1B86           00136 BTFSC PORTB,7
-Warning[203]: Found opcode in column 1. (GOTO)
-002D   2???           00137 GOTO WAIT
+0013   1903           00106 BTFSC STATUS,Z
 Warning[203]: Found opcode in column 1. (CALL)
-002E   2???           00138 CALL RETARDO_SERIAL
-Warning[203]: Found opcode in column 1. (NOP)
-002F   0000           00139 NOP
+0014   2???           00107 CALL CONTRASEÑA_SI
 Warning[203]: Found opcode in column 1. (MOVLW)
-0030   3008           00140 MOVLW .8
-Warning[203]: Found opcode in column 1. (MOVWF)
-0031   00B3           00141 MOVWF CONT
-0032                  00142 AGAIN
-Warning[203]: Found opcode in column 1. (NOP)
-0032   0000           00143 NOP 
-Warning[203]: Found opcode in column 1. (NOP)
-0033   0000           00144 NOP
-Warning[203]: Found opcode in column 1. (RLF)
-Message[305]: Using default destination of 1 (file).
-0034   0D86           00145 RLF PORTB
-Warning[203]: Found opcode in column 1. (RRF)
-Message[305]: Using default destination of 1 (file).
-0035   0CB5           00146 RRF RESUL
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  5
+0015   3031           00108 MOVLW '1'
+Warning[203]: Found opcode in column 1. (SUBWF)
+0016   0235           00109 SUBWF RESUL,0
+Warning[203]: Found opcode in column 1. (BTFSC)
+0017   1903           00110 BTFSC STATUS,Z
+Warning[203]: Found opcode in column 1. (CALL)
+0018   2???           00111 CALL TARJETA_SI
+Warning[203]: Found opcode in column 1. (MOVLW)
+0019   3033           00112 MOVLW '3'
+Warning[203]: Found opcode in column 1. (SUBWF)
+001A   0235           00113 SUBWF RESUL,0
+Warning[203]: Found opcode in column 1. (BTFSC)
+001B   1903           00114 BTFSC STATUS,Z
+Warning[203]: Found opcode in column 1. (CALL)
+001C   2???           00115 CALL TIPO_SI
+Warning[203]: Found opcode in column 1. (GOTO)
+001D   2???           00116 GOTO INF
+                      00117 
+001E                  00118 CONTRASEÑA_SI
+Warning[203]: Found opcode in column 1. (MOVLW)
+001E   3000           00119 MOVLW .0
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-Warning[203]: Found opcode in column 1. (NOP)
-0036   0000           00147 NOP
+Warning[203]: Found opcode in column 1. (MOVWF)
+001F   00B7           00120 MOVWF SALTO
+0020                  00121 REPEAT_1
+Warning[204]: Found pseudo-op in column 1. (MOVFW)
+0020   0837           00122 MOVFW SALTO
 Warning[203]: Found opcode in column 1. (CALL)
-0037   2???           00148 CALL RETARDO_SERIAL
+0021   2???           00123 CALL _PASSWORD
+Warning[203]: Found opcode in column 1. (MOVWF)
+0022   00B6           00124 MOVWF SEND_DATA
+Warning[203]: Found opcode in column 1. (CALL)
+0023   2???           00125 CALL TX
+Warning[203]: Found opcode in column 1. (INCF)
+0024   0AB7           00126 INCF SALTO,1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0025   300D           00127 MOVLW .13
+Warning[203]: Found opcode in column 1. (SUBWF)
+0026   0237           00128 SUBWF SALTO,0
+Warning[203]: Found opcode in column 1. (BTFSS)
+0027   1D03           00129 BTFSS STATUS,Z
+Warning[203]: Found opcode in column 1. (GOTO)
+0028   2???           00130 GOTO REPEAT_1
+Warning[203]: Found opcode in column 1. (RETURN)
+0029   0008           00131 RETURN 
+                      00132 
+002A                  00133 TARJETA_SI
+Warning[203]: Found opcode in column 1. (MOVLW)
+002A   3000           00134 MOVLW .0
+Warning[203]: Found opcode in column 1. (MOVWF)
+002B   00B7           00135 MOVWF SALTO
+002C                  00136 REPEAT_2
+Warning[204]: Found pseudo-op in column 1. (MOVFW)
+002C   0837           00137 MOVFW SALTO
+Warning[203]: Found opcode in column 1. (CALL)
+002D   2???           00138 CALL _TARJETA
+Warning[203]: Found opcode in column 1. (MOVWF)
+002E   00B6           00139 MOVWF SEND_DATA
+Warning[203]: Found opcode in column 1. (CALL)
+002F   2???           00140 CALL TX
+Warning[203]: Found opcode in column 1. (INCF)
+0030   0AB7           00141 INCF SALTO,1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0031   3011           00142 MOVLW .17
+Warning[203]: Found opcode in column 1. (SUBWF)
+0032   0237           00143 SUBWF SALTO,0
+Warning[203]: Found opcode in column 1. (BTFSS)
+0033   1D03           00144 BTFSS STATUS,Z
+Warning[203]: Found opcode in column 1. (GOTO)
+0034   2???           00145 GOTO REPEAT_2
+Warning[203]: Found opcode in column 1. (RETURN)
+0035   0008           00146 RETURN
+                      00147 
+0036                  00148 TIPO_SI
+Warning[203]: Found opcode in column 1. (MOVLW)
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0036   3000           00149 MOVLW .0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0037   00B7           00150 MOVWF SALTO
+0038                  00151 REPEAT_3
+Warning[204]: Found pseudo-op in column 1. (MOVFW)
+0038   0837           00152 MOVFW SALTO
+Warning[203]: Found opcode in column 1. (CALL)
+0039   2???           00153 CALL _TIPO
+Warning[203]: Found opcode in column 1. (MOVWF)
+003A   00B6           00154 MOVWF SEND_DATA
+Warning[203]: Found opcode in column 1. (CALL)
+003B   2???           00155 CALL TX
+Warning[203]: Found opcode in column 1. (INCF)
+003C   0AB7           00156 INCF SALTO,1
+Warning[203]: Found opcode in column 1. (MOVLW)
+003D   3002           00157 MOVLW .2
+Warning[203]: Found opcode in column 1. (SUBWF)
+003E   0237           00158 SUBWF SALTO,0
+Warning[203]: Found opcode in column 1. (BTFSS)
+003F   1D03           00159 BTFSS STATUS,Z
+Warning[203]: Found opcode in column 1. (GOTO)
+0040   2???           00160 GOTO REPEAT_3
+Warning[203]: Found opcode in column 1. (RETURN)
+0041   0008           00161 RETURN 
+                      00162 
+0042                  00163 _PASSWORD    ;qbWL1009!$pn
+Warning[203]: Found opcode in column 1. (ADDWF)
+Message[305]: Using default destination of 1 (file).
+0042   0782           00164 ADDWF PCL
+Warning[203]: Found opcode in column 1. (RETLW)
+0043   3471           00165 RETLW 'q'
+Warning[203]: Found opcode in column 1. (RETLW)
+0044   3462           00166 RETLW 'b'
+Warning[203]: Found opcode in column 1. (RETLW)
+0045   3457           00167 RETLW 'W'
+Warning[203]: Found opcode in column 1. (RETLW)
+0046   344C           00168 RETLW 'L'
+Warning[203]: Found opcode in column 1. (RETLW)
+0047   3431           00169 RETLW '1'
+Warning[203]: Found opcode in column 1. (RETLW)
+0048   3430           00170 RETLW '0'
+Warning[203]: Found opcode in column 1. (RETLW)
+0049   3430           00171 RETLW '0'
+Warning[203]: Found opcode in column 1. (RETLW)
+004A   3439           00172 RETLW '9'
+Warning[203]: Found opcode in column 1. (RETLW)
+004B   3421           00173 RETLW '!'
+Warning[203]: Found opcode in column 1. (RETLW)
+004C   3424           00174 RETLW '$'
+Warning[203]: Found opcode in column 1. (RETLW)
+004D   3470           00175 RETLW 'p'
+Warning[203]: Found opcode in column 1. (RETLW)
+004E   346E           00176 RETLW 'n';loguitud 12
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (RETLW)
+004F   340A           00177 RETLW .10
+Warning[203]: Found opcode in column 1. (RETURN)
+0050   0008           00178 RETURN
+                      00179 
+0051                  00180 _TIPO
+Warning[203]: Found opcode in column 1. (ADDWF)
+Message[305]: Using default destination of 1 (file).
+0051   0782           00181 ADDWF PCL
+Warning[203]: Found opcode in column 1. (RETLW)
+0052   3430           00182 RETLW '0'
+Warning[203]: Found opcode in column 1. (RETLW)
+0053   340A           00183 RETLW .10
+Warning[203]: Found opcode in column 1. (RETURN)
+0054   0008           00184 RETURN
+                      00185 
+0055                  00186 _TARJETA  ;1234085908236784
+Warning[203]: Found opcode in column 1. (ADDWF)
+Message[305]: Using default destination of 1 (file).
+0055   0782           00187 ADDWF PCL
+Warning[203]: Found opcode in column 1. (RETLW)
+0056   3431           00188 RETLW '1'
+Warning[203]: Found opcode in column 1. (RETLW)
+0057   3432           00189 RETLW '2'
+Warning[203]: Found opcode in column 1. (RETLW)
+0058   3433           00190 RETLW '3'
+Warning[203]: Found opcode in column 1. (RETLW)
+0059   3434           00191 RETLW '4'
+Warning[203]: Found opcode in column 1. (RETLW)
+005A   3430           00192 RETLW '0'
+Warning[203]: Found opcode in column 1. (RETLW)
+005B   3438           00193 RETLW '8'
+Warning[203]: Found opcode in column 1. (RETLW)
+005C   3435           00194 RETLW '5'
+Warning[203]: Found opcode in column 1. (RETLW)
+005D   3439           00195 RETLW '9'
+Warning[203]: Found opcode in column 1. (RETLW)
+005E   3430           00196 RETLW '0'
+Warning[203]: Found opcode in column 1. (RETLW)
+005F   3438           00197 RETLW '8'
+Warning[203]: Found opcode in column 1. (RETLW)
+0060   3432           00198 RETLW '2'
+Warning[203]: Found opcode in column 1. (RETLW)
+0061   3433           00199 RETLW '3'
+Warning[203]: Found opcode in column 1. (RETLW)
+0062   3436           00200 RETLW '6'
+Warning[203]: Found opcode in column 1. (RETLW)
+0063   3437           00201 RETLW '7'
+Warning[203]: Found opcode in column 1. (RETLW)
+0064   3438           00202 RETLW '8'
+Warning[203]: Found opcode in column 1. (RETLW)
+0065   3434           00203 RETLW '4';loguitud 16
+Warning[203]: Found opcode in column 1. (RETLW)
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0066   340A           00204 RETLW .10
+Warning[203]: Found opcode in column 1. (RETURN)
+0067   0008           00205 RETURN
+                      00206 
+                      00207 
+0068                  00208 TX
+Warning[203]: Found opcode in column 1. (BSF)
+0068   1706           00209 BSF PORTB,6
+Warning[203]: Found opcode in column 1. (BSF)
+0069   1405           00210 BSF PORTA,0
+Warning[204]: Found pseudo-op in column 1. (MOVFW)
+006A   0836           00211 MOVFW SEND_DATA
+Warning[203]: Found opcode in column 1. (MOVWF)
+006B   00B4           00212 MOVWF DATO
+Warning[203]: Found opcode in column 1. (BCF)
+006C   1005           00213 BCF PORTA,0
+Warning[203]: Found opcode in column 1. (BCF)
+006D   1306           00214 BCF PORTB,6
+Warning[203]: Found opcode in column 1. (CALL)
+006E   2???           00215 CALL RETARDO_SERIALTX
+Warning[203]: Found opcode in column 1. (MOVLW)
+006F   3008           00216 MOVLW .8
+Warning[203]: Found opcode in column 1. (MOVWF)
+0070   00B3           00217 MOVWF CONT
+0071                  00218 OTRA
+Warning[203]: Found opcode in column 1. (RRF)
+0071   0CB4           00219 RRF DATO,1
+Warning[203]: Found opcode in column 1. (BTFSS)
+0072   1C03           00220 BTFSS STATUS,C
+Warning[203]: Found opcode in column 1. (GOTO)
+0073   2???           00221 GOTO NO
+Warning[203]: Found opcode in column 1. (BSF)
+0074   1706           00222 BSF PORTB,6
+Warning[203]: Found opcode in column 1. (BSF)
+0075   1405           00223 BSF PORTA,0
+Warning[203]: Found opcode in column 1. (GOTO)
+0076   2???           00224 GOTO SI
+0077                  00225 NO
+Warning[203]: Found opcode in column 1. (BCF)
+0077   1306           00226 BCF PORTB,6
+Warning[203]: Found opcode in column 1. (BCF)
+0078   1005           00227 BCF PORTA,0
+0079                  00228 SI
+Warning[203]: Found opcode in column 1. (CALL)
+0079   2???           00229 CALL RETARDO_SERIALTX
 Warning[203]: Found opcode in column 1. (DECFSZ)
 Message[305]: Using default destination of 1 (file).
-0038   0BB3           00149 DECFSZ CONT
+007A   0BB3           00230 DECFSZ CONT
 Warning[203]: Found opcode in column 1. (GOTO)
-0039   2???           00150 GOTO AGAIN
-Warning[203]: Found opcode in column 1. (RRF)
-Message[305]: Using default destination of 1 (file).
-003A   0CB5           00151 RRF RESUL
+007B   2???           00231 GOTO OTRA 
+Warning[203]: Found opcode in column 1. (BSF)
+007C   1706           00232 BSF PORTB,6
 Warning[203]: Found opcode in column 1. (RETURN)
-003B   0008           00152 RETURN
-                      00153 
-                      00154 
-003C                  00155 RETARDO
-003C   00B0           00156                 MOVWF RETARDO1
-003D                  00157 LOOP1
-003D   3032           00158                 MOVLW D'50'
-003E   00B1           00159                 MOVWF RETARDO2
-003F                  00160 LOOP2
-003F   30A6           00161                 MOVLW D'166'
-0040   00B2           00162                 MOVWF RETARDO3
-0041                  00163 LOOP3   
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+007D   0008           00233 RETURN
+                      00234 
+007E                  00235 RX
+007E                  00236 WAIT
+Warning[203]: Found opcode in column 1. (BTFSC)
+007E   1B86           00237 BTFSC PORTB,7
+Warning[203]: Found opcode in column 1. (GOTO)
+007F   2???           00238 GOTO WAIT
+Warning[203]: Found opcode in column 1. (CALL)
+0080   2???           00239 CALL RETARDO_SERIALRX
+Warning[203]: Found opcode in column 1. (MOVLW)
+0081   3008           00240 MOVLW .8
+Warning[203]: Found opcode in column 1. (MOVWF)
+0082   00B3           00241 MOVWF CONT
+0083                  00242 AGAIN
+Warning[203]: Found opcode in column 1. (RLF)
+0083   0D06           00243 RLF PORTB,0
+Warning[203]: Found opcode in column 1. (RRF)
+0084   0CB5           00244 RRF RESUL,1
+Warning[203]: Found opcode in column 1. (CALL)
+0085   2???           00245 CALL RETARDO_SERIALRX
+Warning[203]: Found opcode in column 1. (DECFSZ)
 Message[305]: Using default destination of 1 (file).
-0041   0BB2           00164                 DECFSZ RETARDO3
-0042   2???           00165                 GOTO LOOP3
+0086   0BB3           00246 DECFSZ CONT
+Warning[203]: Found opcode in column 1. (GOTO)
+0087   2???           00247 GOTO AGAIN
+Warning[203]: Found opcode in column 1. (RETURN)
+0088   0008           00248 RETURN
+                      00249 
+                      00250 
+0089                  00251 RETARDO
+0089   00B0           00252                 MOVWF RETARDO1
+008A                  00253 LOOP1
+008A   3032           00254                 MOVLW D'50'
+008B   00B1           00255                 MOVWF RETARDO2
+008C                  00256 LOOP2
+008C   30A6           00257                 MOVLW D'166'
+008D   00B2           00258                 MOVWF RETARDO3
+008E                  00259 LOOP3   
 Message[305]: Using default destination of 1 (file).
-0043   0BB1           00166                 DECFSZ RETARDO2
-0044   2???           00167                 GOTO LOOP2
+008E   0BB2           00260                 DECFSZ RETARDO3
+008F   2???           00261                 GOTO LOOP3
 Message[305]: Using default destination of 1 (file).
-0045   0BB0           00168                 DECFSZ RETARDO1
-0046   2???           00169                 GOTO LOOP1
-0047   0008           00170                 RETURN
-                      00171 
-0048                  00172 RETARDO_SERIAL
-                      00173 
-0048   3020           00174                 MOVLW D'32'
-0049   00B2           00175                 MOVWF RETARDO3
-004A                  00176 LOOP5
+0090   0BB1           00262                 DECFSZ RETARDO2
+0091   2???           00263                 GOTO LOOP2
 Message[305]: Using default destination of 1 (file).
-004A   0BB2           00177                 DECFSZ RETARDO3
-004B   2???           00178                 GOTO LOOP5
-004C   0008           00179                 RETURN
-3F10                  00180         END                       ; directive 'end of program'
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  6
+0092   0BB0           00264                 DECFSZ RETARDO1
+0093   2???           00265                 GOTO LOOP1
+0094   0008           00266                 RETURN
+                      00267 
+0095                  00268 RETARDO_SERIALTX
+                      00269 
+0095   3020           00270                 MOVLW D'32'
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0096   00B2           00271                 MOVWF RETARDO3
+0097                  00272 LOOP5
+Message[305]: Using default destination of 1 (file).
+0097   0BB2           00273                 DECFSZ RETARDO3
+0098   2???           00274                 GOTO LOOP5
+0099   0008           00275                 RETURN
+                      00276 
+009A                  00277 RETARDO_SERIALRX
+                      00278 
+009A   3021           00279                 MOVLW D'33'
+009B   00B2           00280                 MOVWF RETARDO3
+009C                  00281 LOOP6
+Message[305]: Using default destination of 1 (file).
+009C   0BB2           00282                 DECFSZ RETARDO3
+009D   2???           00283                 GOTO LOOP6
+009E   0008           00284                 RETURN
+3F10                  00285         END                       ; directive 'end of program'
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE 10
 
 
 SYMBOL TABLE
@@ -294,7 +501,7 @@ SYMBOL TABLE
 
 ADDEN                             00000003
 ADEN                              00000003
-AGAIN                             00000032
+AGAIN                             00000083
 BRGH                              00000002
 C                                 00000000
 C1INV                             00000004
@@ -321,6 +528,7 @@ CMCON                             0000001F
 CMIE                              00000006
 CMIF                              00000006
 CONT                              00000033
+CONTRASEÑA_SI                     0000001E
 CREN                              00000004
 CSRC                              00000007
 DATO                              00000034
@@ -343,17 +551,18 @@ INTEDG                            00000006
 INTERRUPT                         00000004
 INTF                              00000001
 IRP                               00000007
-LOOP1                             0000003D
-LOOP2                             0000003F
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  7
+LOOP1                             0000008A
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE 11
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-LOOP3                             00000041
-LOOP5                             0000004A
-NO                                00000025
+LOOP2                             0000008C
+LOOP3                             0000008E
+LOOP5                             00000097
+LOOP6                             0000009C
+NO                                00000077
 NOT_BO                            00000000
 NOT_BOD                           00000000
 NOT_BOR                           00000000
@@ -365,7 +574,7 @@ NOT_TO                            00000004
 OERR                              00000001
 OPTION_REG                        00000081
 OSCF                              00000003
-OTRA                              0000001F
+OTRA                              00000071
 PCL                               00000002
 PCLATH                            0000000A
 PCON                              0000008E
@@ -402,25 +611,30 @@ RCIF                              00000005
 RCREG                             0000001A
 RCSTA                             00000018
 RD                                00000000
-RESUL                             00000035
-RETARDO                           0000003C
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  8
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE 12
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+REPEAT_1                          00000020
+REPEAT_2                          0000002C
+REPEAT_3                          00000038
+RESUL                             00000035
+RETARDO                           00000089
 RETARDO1                          00000030
 RETARDO2                          00000031
 RETARDO3                          00000032
-RETARDO_SERIAL                    00000048
+RETARDO_SERIALRX                  0000009A
+RETARDO_SERIALTX                  00000095
 RP0                               00000005
 RP1                               00000006
-RX                                0000002C
+RX                                0000007E
 RX9                               00000006
 RX9D                              00000000
+SALTO                             00000037
 SEND_DATA                         00000036
-SI                                00000027
+SI                                00000079
 SPBRG                             00000099
 SPEN                              00000007
 SREN                              00000005
@@ -438,6 +652,8 @@ T1OSCEN                           00000003
 T2CKPS0                           00000000
 T2CKPS1                           00000001
 T2CON                             00000012
+TARJETA_SI                        0000002A
+TIPO_SI                           00000036
 TMR0                              00000001
 TMR0IE                            00000005
 TMR0IF                            00000002
@@ -454,6 +670,12 @@ TMR2IF                            00000001
 TMR2ON                            00000002
 TOUTPS0                           00000003
 TOUTPS1                           00000004
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 TOUTPS2                           00000005
 TOUTPS3                           00000006
 TRISA                             00000085
@@ -463,12 +685,6 @@ TRISA2                            00000002
 TRISA3                            00000003
 TRISA4                            00000004
 TRISA5                            00000005
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE  9
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 TRISA6                            00000006
 TRISA7                            00000007
 TRISB                             00000086
@@ -481,7 +697,7 @@ TRISB5                            00000005
 TRISB6                            00000006
 TRISB7                            00000007
 TRMT                              00000001
-TX                                00000016
+TX                                00000068
 TX9                               00000006
 TX9D                              00000000
 TXEN                              00000005
@@ -498,7 +714,7 @@ VREN                              00000007
 VROE                              00000006
 VRR                               00000005
 W                                 00000000
-WAIT                              0000002C
+WAIT                              0000007E
 WR                                00000001
 WREN                              00000002
 WRERR                             00000003
@@ -513,6 +729,12 @@ _CPD_ON                           00003EFF
 _CP_OFF                           00003FFF
 _CP_ON                            00001FFF
 _DATA_CP_OFF                      00003FFF
+MPASM  5.51                   16F628ATMPO.ASM   11-25-2018  22:05:59         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
 _DATA_CP_ON                       00003EFF
 _DEVID1                           00002006
 _ER_OSC_CLKOUT                    00003FFF
@@ -522,12 +744,6 @@ _FOSC_ECIO                        00003FEF
 _FOSC_EXTRCCLK                    00003FFF
 _FOSC_EXTRCIO                     00003FFE
 _FOSC_HS                          00003FEE
-MPASM  5.51                   16F628ATMPO.ASM   11-18-2018  22:02:58         PAGE 10
-
-
-SYMBOL TABLE
-  LABEL                             VALUE 
-
 _FOSC_INTOSCCLK                   00003FFD
 _FOSC_INTOSCIO                    00003FFC
 _FOSC_LP                          00003FEC
@@ -546,10 +762,13 @@ _LVP_OFF                          00003F7F
 _LVP_ON                           00003FFF
 _MCLRE_OFF                        00003FDF
 _MCLRE_ON                         00003FFF
+_PASSWORD                         00000042
 _PWRTE_OFF                        00003FFF
 _PWRTE_ON                         00003FF7
 _RC_OSC_CLKOUT                    00003FFF
 _RC_OSC_NOCLKOUT                  00003FFE
+_TARJETA                          00000055
+_TIPO                             00000051
 _WDTE_OFF                         00003FFB
 _WDTE_ON                          00003FFF
 _WDT_OFF                          00003FFB
@@ -561,7 +780,7 @@ status_temp                       00000001
 w_temp                            00000000
 
 Errors   :     0
-Warnings :    59 reported,     0 suppressed
-Messages :     9 reported,     2 suppressed
+Warnings :   136 reported,     0 suppressed
+Messages :    10 reported,     2 suppressed
 
 

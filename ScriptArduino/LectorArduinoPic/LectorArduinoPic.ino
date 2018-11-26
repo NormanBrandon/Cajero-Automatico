@@ -13,6 +13,6 @@ if(Serial.available()>0){
   }
 if(Tarjeta.available()>0){
   int dato= Tarjeta.read();
-  Serial.println(dato);
+  Serial.print((char)dato);
   } 
 }

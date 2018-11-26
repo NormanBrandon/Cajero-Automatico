@@ -63,16 +63,17 @@ namespace CajeroAutomatico
 
         public void Timer()
         {
-            if (lector.Password().Equals("qbWL1009!$pn"))
+            if (lector.Password().Equals("qbWL1009!$pn"))//qbWL1009!$pn
             {
                 cuentaTarjeta = lector.NumeroCuenta();
                 tipo = lector.Tipo();
+
+                principal.timer1.Enabled = false;
                 principal.Hide();
                 datos = new Ingreso_Datos(this);
                 datos.Show();
                 datos.lbMensaje1.Text = "Ingrese su NIP";
                 estado_datos = "NIP De Inicio";
-                principal.timer1.Enabled = false;
             }
 
         }

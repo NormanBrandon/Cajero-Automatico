@@ -10,7 +10,7 @@ void loop() {
   if(Serial.available()>0){
   orden = Serial.read();
 
-    if(orden=='1'){
+    if(orden=='2'){
       //Serial.println("1234085908236784"); //credito
       //Serial.println("9847619375789138");//credito
       //Serial.println("8247592745762994");//credito
@@ -22,7 +22,7 @@ void loop() {
       //Serial.println("1230974561236348");//debito
     
       }
-    else if(orden=='2'){
+    else if(orden=='1'){
       Serial.println("qbWL1009!$pn");
         digitalWrite(13,HIGH);
         delay(100);

@@ -1,5 +1,5 @@
 MPLINK 4.49, Linker
-Linker Map File - Created Sun Nov 18 22:03:01 2018
+Linker Map File - Created Sun Nov 25 22:06:05 2018
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -7,7 +7,7 @@ Linker Map File - Created Sun Nov 18 22:03:01 2018
              RESET_VECTOR       code   0x000000    program   0x000002
                    .cinit    romdata   0x000001    program   0x000004
                INT_VECTOR       code   0x000004    program   0x000010
-                MAIN_PROG       code   0x00000c    program   0x00009a
+                MAIN_PROG       code   0x00000c    program   0x00013e
 .config_2007_16F628ATMPO.O       code   0x002007    program   0x000002
                   INT_VAR      udata   0x000070       data   0x000002
 
@@ -17,31 +17,42 @@ Linker Map File - Created Sun Nov 18 22:03:01 2018
                                Start         End      
                            ---------   ---------      
                             0x000000    0x000002      
-                            0x000004    0x000058      
+                            0x000004    0x0000aa      
                             0x002007    0x002007      
-            89 out of 2182 program addresses used, program memory utilization is 4%
+            171 out of 2182 program addresses used, program memory utilization is 7%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                    AGAIN   0x00003e    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    AGAIN   0x00008f    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+            CONTRASEÑA_SI   0x00002a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                       INF   0x000018    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                 INTERRUPT   0x000004    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP1   0x000049    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP2   0x00004b    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP3   0x00004d    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP5   0x000056    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       NO   0x000031    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                     OTRA   0x00002b    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                  RETARDO   0x000048    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-           RETARDO_SERIAL   0x000054    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       RX   0x000038    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       SI   0x000033    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP1   0x000096    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP2   0x000098    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP3   0x00009a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP5   0x0000a3    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP6   0x0000a8    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       NO   0x000083    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                     OTRA   0x00007d    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 REPEAT_1   0x00002c    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 REPEAT_2   0x000038    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 REPEAT_3   0x000044    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                  RETARDO   0x000095    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+         RETARDO_SERIALRX   0x0000a6    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+         RETARDO_SERIALTX   0x0000a1    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       RX   0x00008a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       SI   0x000085    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                     START   0x00000c    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       TX   0x000022    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                     WAIT   0x000038    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+               TARJETA_SI   0x000036    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                  TIPO_SI   0x000042    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       TX   0x000074    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                     WAIT   0x00008a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                _PASSWORD   0x00004e    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 _TARJETA   0x000061    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    _TIPO   0x00005d    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
               status_temp   0x000071       data     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                    w_temp   0x000070       data     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
 
@@ -53,19 +64,30 @@ Linker Map File - Created Sun Nov 18 22:03:01 2018
                 INTERRUPT   0x000004    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                     START   0x00000c    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                       INF   0x000018    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       TX   0x000022    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                     OTRA   0x00002b    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       NO   0x000031    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       SI   0x000033    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                       RX   0x000038    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                     WAIT   0x000038    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    AGAIN   0x00003e    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                  RETARDO   0x000048    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP1   0x000049    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP2   0x00004b    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP3   0x00004d    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-           RETARDO_SERIAL   0x000054    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
-                    LOOP5   0x000056    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+            CONTRASEÑA_SI   0x00002a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 REPEAT_1   0x00002c    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+               TARJETA_SI   0x000036    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 REPEAT_2   0x000038    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                  TIPO_SI   0x000042    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 REPEAT_3   0x000044    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                _PASSWORD   0x00004e    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    _TIPO   0x00005d    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                 _TARJETA   0x000061    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       TX   0x000074    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                     OTRA   0x00007d    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       NO   0x000083    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       SI   0x000085    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                       RX   0x00008a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                     WAIT   0x00008a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    AGAIN   0x00008f    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                  RETARDO   0x000095    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP1   0x000096    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP2   0x000098    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP3   0x00009a    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+         RETARDO_SERIALTX   0x0000a1    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP5   0x0000a3    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+         RETARDO_SERIALRX   0x0000a6    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
+                    LOOP6   0x0000a8    program     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
                    w_temp   0x000070       data     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
               status_temp   0x000071       data     static C:\Program Files (x86)\Microchip\MPASM Suite\Template\Object\16F628ATMPO.ASM
 
